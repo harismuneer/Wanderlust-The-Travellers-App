@@ -22,10 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTouchListener{
-
-//    public static ArrayList<String> names = new ArrayList<>();
-//    public static ArrayList<String> phones = new ArrayList<>();
-
     GestureDetector gestureDetector;
     Context c;
     RecyclerView rv;
