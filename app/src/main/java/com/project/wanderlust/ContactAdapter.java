@@ -13,16 +13,15 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
-    private ArrayList<ContactCell> items;
+    private ArrayList<Contact> items;
     private int itemLayout;
 
-    public ContactAdapter(ArrayList<ContactCell> items, int itemLayout) {
+    public ContactAdapter(ArrayList<Contact> items, int itemLayout) {
         this.items = items;
         this.itemLayout = itemLayout;
     }
 
-    @NonNull
-    @Override
+    @NonNull @Override
     public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(itemLayout, parent, false);
         return new ContactViewHolder(v);
@@ -31,7 +30,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
         if(items != null) {
-            ContactCell cell = items.get(position);
+            Contact cell = items.get(position);
 
             if(cell.getPhoto() == null) {
                 holder.photoImageView.setImageResource(R.drawable.account);
@@ -44,9 +43,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     }
 
     @Override
-    public int getItemCount()
-    {
-        int i = 0;
+    public int getItemCount() {
         if(items != null)
             return items.size();
         else

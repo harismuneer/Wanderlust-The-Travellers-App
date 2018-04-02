@@ -22,7 +22,7 @@ public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTo
     GestureDetector gestureDetector;
     Context c;
     RecyclerView rv;
-    ArrayList<ContactCell> arrayList;
+    final ArrayList<Contact> arrayList = new ArrayList<>();
     ContactAdapter adapter;
 
     @Override
@@ -42,10 +42,9 @@ public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTo
         });
 
         loadContactsFromPhone();
-        int farhan = 0;
-        arrayList = new ArrayList<>();
+
         for(int i = 0; i < names.size(); i++) {
-            arrayList.add(new ContactCell(null, names.get(i), phones.get(i), "vfvd"));
+            arrayList.add(new Contact(null, names.get(i), phones.get(i), "vfvd"));
         }
 
         adapter = new ContactAdapter(arrayList, R.layout.contact_cell);
