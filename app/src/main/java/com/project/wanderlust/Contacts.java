@@ -42,7 +42,7 @@ public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTo
         });
 
         loadContactsFromPhone();
-
+        int farhan = 0;
         arrayList = new ArrayList<>();
         for(int i = 0; i < names.size(); i++) {
             arrayList.add(new ContactCell(null, names.get(i), phones.get(i), "vfvd"));
