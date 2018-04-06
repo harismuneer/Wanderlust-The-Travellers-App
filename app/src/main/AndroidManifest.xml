@@ -29,7 +29,8 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".SetProfileData" />
         <activity android:name=".Extra" />
-        <activity android:name=".Contacts"></activity>
+        <activity android:name=".Contacts" />
+        <activity android:name=".CreateJourneyActivity"></activity>
     </application>
 
 </manifest>
