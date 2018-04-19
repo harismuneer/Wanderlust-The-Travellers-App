@@ -210,9 +210,16 @@
         <item>263,ZW</item>
     </string-array>
 
+    <string name="camera">Camera</string>
+    <string name="cancel">Cancel</string>
     <string name="carrier">Carrier SMS charges may apply</string>
+    <string name="create">Create</string>
+
+    <string name="description">Want to describe?</string>
 
     <string name="enter_code">Enter 6-digit code</string>
+
+    <string name="gallery">Gallery</string>
 
     <string name="mobile">MOBILE</string>
 
@@ -222,6 +229,7 @@
     <string name="provide_info">Profile info</string>
     <string name="provide_profile_info">Please provide your name and profile photo</string>
 
+    <string name="title">Give your Journey a Title</string>
     <string name="type_name">Type your name here</string>
 
     <string name="verify">Verify your phone number</string>
