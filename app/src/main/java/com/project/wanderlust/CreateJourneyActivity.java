@@ -2,13 +2,15 @@ package com.project.wanderlust;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +35,9 @@ public class CreateJourneyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_journey);
 
+        getActionBar().setTitle("Step 2: Create Journey");
+        getSupportActionBar().setTitle("Step 2: Create Journey");
+
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mReference = FirebaseDatabase.getInstance().getReference("Journeys").child(mUser.getPhoneNumber());
 
@@ -48,26 +53,40 @@ public class CreateJourneyActivity extends AppCompatActivity {
             if (requestCode == CAMERA) {
                 photos.add((Bitmap) data.getExtras().get("data"));
                 adapter.notifyDataSetChanged();
+                //Toast.makeText(this, photos.size(), Toast.LENGTH_LONG).show();
             }
             else if (requestCode == GALLERY) {
-                if(data.getData() != null) {
-                    Uri mImageUri=data.getData();
-                    Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(new File(mImageUri.toString()), 500, 500);
-                    photos.add(bitmap);
-                    adapter.notifyDataSetChanged();
-                }
-                else {
-                    if(data.getClipData() != null){
-                        ClipData mClipData = data.getClipData();
-                        for(int i=0; i < mClipData.getItemCount(); i++){
-                            ClipData.Item item = mClipData.getItemAt(i);
-                            Uri uri = item.getUri();
-                            Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(new File(uri.toString()), 500, 500);
-                            photos.add(bitmap);
-                            adapter.notifyDataSetChanged();
-                        }
+                if(data.getClipData() != null){
+                    ClipData mClipData = data.getClipData();
+                    for(int i=0; i < mClipData.getItemCount(); i++){
+                        ClipData.Item item = mClipData.getItemAt(i);
+                        Uri uri = item.getUri();
+
+                        Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(new File(getRealPathFromURI(uri)), 500, 500);
+                        photos.add(bitmap);
+                        adapter.notifyDataSetChanged();
+
+                        //Toast.makeText(this, photos.size(), Toast.LENGTH_LONG).show();
                     }
                 }
+//                if(data.getData() != null) {
+//                    Uri mImageUri=data.getData();
+//                    Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(new File(mImageUri.toString()), 500, 500);
+//                    photos.add(bitmap);
+//                    adapter.notifyDataSetChanged();
+//                }
+//                else {
+//                    if(data.getClipData() != null){
+//                        ClipData mClipData = data.getClipData();
+//                        for(int i=0; i < mClipData.getItemCount(); i++){
+//                            ClipData.Item item = mClipData.getItemAt(i);
+//                            Uri uri = item.getUri();
+//                            Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(new File(uri.toString()), 500, 500);
+//                            photos.add(bitmap);
+//                            adapter.notifyDataSetChanged();
+//                        }
+//                    }
+//                }
             }
         }
     }
@@ -89,5 +108,17 @@ public class CreateJourneyActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select Picture"), GALLERY);
+    }
+
+    public String getRealPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if(cursor.moveToFirst()){
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
     }
 }

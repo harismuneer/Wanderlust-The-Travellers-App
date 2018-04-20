@@ -35,7 +35,7 @@ public class SelectedPicturesAdapter extends ArrayAdapter<Bitmap> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Bitmap bitmap = getItem(position);
-        ImageView imageView = new ImageView(getContext());
+        ImageView imageView = new SquareImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setImageBitmap(bitmap);
         convertView = imageView;

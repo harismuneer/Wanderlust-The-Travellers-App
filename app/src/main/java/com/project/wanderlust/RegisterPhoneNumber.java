@@ -61,7 +61,7 @@ public class RegisterPhoneNumber extends AppCompatActivity {
         //checking if user already signed in
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this, Contacts.class));
+            startActivity(new Intent(this, CreateJourneyActivity.class));
             finish();
         }
 
