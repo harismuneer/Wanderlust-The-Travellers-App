@@ -30,7 +30,8 @@
         <activity android:name=".SetProfileData" />
         <activity android:name=".Extra" />
         <activity android:name=".Contacts" />
-        <activity android:name=".CreateJourneyActivity"></activity>
+        <activity android:name=".CreateJourneyActivity" />
+        <activity android:name=".ShowJourney"></activity>
     </application>
 
 </manifest>
