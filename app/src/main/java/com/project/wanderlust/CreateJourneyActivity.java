@@ -1,14 +1,17 @@
 package com.project.wanderlust;
 
 import android.content.ClipData;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -18,7 +21,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreateJourneyActivity extends AppCompatActivity {
     public static final int CAMERA = 2;
@@ -26,6 +35,9 @@ public class CreateJourneyActivity extends AppCompatActivity {
 
     FirebaseUser mUser;
     DatabaseReference mReference;
+
+    private EditText title;
+    private EditText description;
 
     final ArrayList<Bitmap> photos = new ArrayList<>();
     SelectedPicturesAdapter adapter;
@@ -35,11 +47,13 @@ public class CreateJourneyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_journey);
 
-        getActionBar().setTitle("Step 2: Create Journey");
         getSupportActionBar().setTitle("Step 2: Create Journey");
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mReference = FirebaseDatabase.getInstance().getReference("Journeys").child(mUser.getPhoneNumber());
+
+        title = findViewById(R.id.title);
+        description = findViewById(R.id.description);
 
         adapter = new SelectedPicturesAdapter(this, photos);
         GridView gridView = findViewById(R.id.photoGrid);
@@ -51,24 +65,26 @@ public class CreateJourneyActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && data != null) {
             if (requestCode == CAMERA) {
-                photos.add((Bitmap) data.getExtras().get("data"));
-                adapter.notifyDataSetChanged();
-                //Toast.makeText(this, photos.size(), Toast.LENGTH_LONG).show();
+                if(photos.size() < 10) {
+                    photos.add((Bitmap) data.getExtras().get("data"));
+                    adapter.notifyDataSetChanged();
+                }
+                else Toast.makeText(this, "Cannot add more than 10 pictures", Toast.LENGTH_LONG).show();
             }
             else if (requestCode == GALLERY) {
-                if(data.getClipData() != null){
-                    ClipData mClipData = data.getClipData();
-                    for(int i=0; i < mClipData.getItemCount(); i++){
-                        ClipData.Item item = mClipData.getItemAt(i);
-                        Uri uri = item.getUri();
-
-                        Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(new File(getRealPathFromURI(uri)), 500, 500);
-                        photos.add(bitmap);
-                        adapter.notifyDataSetChanged();
-
-                        //Toast.makeText(this, photos.size(), Toast.LENGTH_LONG).show();
+                if(photos.size() < 10) {
+                    if (data.getClipData() != null) {
+                        ClipData mClipData = data.getClipData();
+                        for (int i = 0; i < mClipData.getItemCount(); i++) {
+                            ClipData.Item item = mClipData.getItemAt(i);
+                            Uri uri = item.getUri();
+                            Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(new File(getRealPathFromURI(uri)), 500, 500);
+                            photos.add(bitmap);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 }
+                else Toast.makeText(this, "Cannot add more than 10 pictures", Toast.LENGTH_LONG).show();
 //                if(data.getData() != null) {
 //                    Uri mImageUri=data.getData();
 //                    Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(new File(mImageUri.toString()), 500, 500);
@@ -92,7 +108,31 @@ public class CreateJourneyActivity extends AppCompatActivity {
     }
 
     public void createJourney(View view) {
+        final String t = title.getText().toString();
+        final String d = description.getText().toString();
+        if(t.equals("")) {
+            Toast.makeText(this, "Please give your journey a title", Toast.LENGTH_LONG).show();
+            return;
+        }
+        final Map<String, String> map = new HashMap<>();
+        map.put("title", t);
+        map.put("description", d);
+        final String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        mReference.child(time).setValue(map);
 
+        ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
+        File file = wrapper.getDir(time, MODE_PRIVATE);
+
+        int size = photos.size();
+        for(int i = 0; i < size; i++) {
+            File file1 = new File(file, i + ".jpg");
+            try {
+                OutputStream stream = new FileOutputStream(file1);
+                photos.get(i).compress(Bitmap.CompressFormat.JPEG,100,stream);
+                stream.flush();
+                stream.close();
+            } catch (Exception e) {}
+        }
     }
 
     public void Cancel(View view) { onBackPressed(); }
