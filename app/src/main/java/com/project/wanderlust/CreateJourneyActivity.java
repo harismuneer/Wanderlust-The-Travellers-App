@@ -1,12 +1,10 @@
 package com.project.wanderlust;
 
 import android.content.ClipData;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,8 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -114,25 +110,13 @@ public class CreateJourneyActivity extends AppCompatActivity {
             Toast.makeText(this, "Please give your journey a title", Toast.LENGTH_LONG).show();
             return;
         }
+        final String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        new SaveImages(this, time, photos).execute();
+
         final Map<String, String> map = new HashMap<>();
         map.put("title", t);
         map.put("description", d);
-        final String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         mReference.child(time).setValue(map);
-
-        ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
-        File file = wrapper.getDir(time, MODE_PRIVATE);
-
-        int size = photos.size();
-        for(int i = 0; i < size; i++) {
-            File file1 = new File(file, i + ".jpg");
-            try {
-                OutputStream stream = new FileOutputStream(file1);
-                photos.get(i).compress(Bitmap.CompressFormat.JPEG,100,stream);
-                stream.flush();
-                stream.close();
-            } catch (Exception e) {}
-        }
     }
 
     public void Cancel(View view) { onBackPressed(); }
