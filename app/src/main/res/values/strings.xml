@@ -216,6 +216,7 @@
     <string name="create">Create</string>
 
     <string name="description">Want to describe?</string>
+    <string name="desc">Description</string>
 
     <string name="enter_code">Enter 6-digit code</string>
 
@@ -230,6 +231,7 @@
     <string name="provide_profile_info">Please provide your name and profile photo</string>
 
     <string name="title">Give your Journey a Title</string>
+    <string name="title1">Title</string>
     <string name="type_name">Type your name here</string>
 
     <string name="verify">Verify your phone number</string>

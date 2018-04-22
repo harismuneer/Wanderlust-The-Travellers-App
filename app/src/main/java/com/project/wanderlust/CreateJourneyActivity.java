@@ -14,7 +14,6 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,7 +28,10 @@ public class CreateJourneyActivity extends AppCompatActivity {
     public static final int CAMERA = 2;
     public static final int GALLERY = 3;
 
-    FirebaseUser mUser;
+    public static String TITLE = "title";
+    public static String DESCRIPTION = "description";
+    public static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
     DatabaseReference mReference;
 
     private EditText title;
@@ -45,8 +47,7 @@ public class CreateJourneyActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Step 2: Create Journey");
 
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        mReference = FirebaseDatabase.getInstance().getReference("Journeys").child(mUser.getPhoneNumber());
+        mReference = FirebaseDatabase.getInstance().getReference("Journeys").child(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber());
 
         title = findViewById(R.id.title);
         description = findViewById(R.id.description);
@@ -110,13 +111,15 @@ public class CreateJourneyActivity extends AppCompatActivity {
             Toast.makeText(this, "Please give your journey a title", Toast.LENGTH_LONG).show();
             return;
         }
-        final String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        new SaveImages(this, time, photos).execute();
+        final String time = new SimpleDateFormat(DATE_FORMAT).format(new Date());
+        new SaveImages(getApplicationContext(), time, photos).execute();
 
         final Map<String, String> map = new HashMap<>();
-        map.put("title", t);
-        map.put("description", d);
+        map.put(TITLE, t);
+        map.put(DESCRIPTION, d);
         mReference.child(time).setValue(map);
+
+        Toast.makeText(this, "Journey Created", Toast.LENGTH_LONG).show();
     }
 
     public void Cancel(View view) { onBackPressed(); }
