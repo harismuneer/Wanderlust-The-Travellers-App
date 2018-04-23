@@ -112,7 +112,7 @@ public class SetProfileData extends AppCompatActivity {
                     reference1.child("name").setValue(null);
                     reference1.child("status").setValue(null);
                     mDatabase.child("users").child(phone).setValue(map);
-                    startActivity(new Intent(SetProfileData.this, CreateJourneyActivity.class));
+                    startActivity(new Intent(SetProfileData.this, JourneysLsitActivity.class));
                     finish();
                 }
             });

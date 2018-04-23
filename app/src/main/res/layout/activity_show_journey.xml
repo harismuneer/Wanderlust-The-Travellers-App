@@ -37,6 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:numColumns="3"/>
+        android:numColumns="3"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"/>
 
 </LinearLayout>

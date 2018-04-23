@@ -32,7 +32,6 @@ public class ShowJourney extends AppCompatActivity {
 
         Intent intent = getIntent();
         String timestamp = (String) intent.getSerializableExtra("timestamp");
-        timestamp = "2018-04-22 11:18:44";
 
         final TextView titleView = findViewById(R.id.title);
         final TextView descriptionView = findViewById(R.id.description);

@@ -12,6 +12,8 @@ import org.jetbrains.annotations.Contract;
 import java.io.File;
 
 public class SharedFunctions {
+    public static String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
     @Contract(pure = true)
     public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         final int height = options.outHeight;

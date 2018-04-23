@@ -34,6 +34,7 @@ public class RegisterPhoneNumber extends AppCompatActivity {
         try {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
             FirebaseDatabase.getInstance().getReference("users").keepSynced(true);
+            FirebaseDatabase.getInstance().getReference("Journeys").keepSynced(true);
             FirebaseDatabase.getInstance().getReference("inviteLink").keepSynced(true);
         }
         catch (Exception ex) {}
@@ -61,7 +62,7 @@ public class RegisterPhoneNumber extends AppCompatActivity {
         //checking if user already signed in
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this, CreateJourneyActivity.class));
+            startActivity(new Intent(this, JourneysLsitActivity.class));
             finish();
         }
 
