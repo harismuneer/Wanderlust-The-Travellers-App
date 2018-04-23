@@ -36,7 +36,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String string = (String) intent.getSerializableExtra("phone");
         TextView verify = findViewById(R.id.verify);
-        verify.setText(R.string.verify_3 + " " + string + " ");
+        verify.setText(getString(R.string.verify_3) + " " + string + " ");
         TextView phone = findViewById(R.id.phone);
         phone.setText(string);
 

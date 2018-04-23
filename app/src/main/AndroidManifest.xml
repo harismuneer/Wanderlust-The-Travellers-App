@@ -31,7 +31,8 @@
         <activity android:name=".Extra" />
         <activity android:name=".Contacts" />
         <activity android:name=".CreateJourneyActivity" />
-        <activity android:name=".ShowJourney"></activity>
+        <activity android:name=".ShowJourney" />
+        <activity android:name=".JourneysLsitActivity"></activity>
     </application>
 
 </manifest>
