@@ -25,7 +25,7 @@ public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTo
     GestureDetector gestureDetector;
     Context c;
     RecyclerView rv;
-    final ArrayList<Contact> arrayList = new ArrayList<>();
+    final static ArrayList<Contact> arrayList = new ArrayList<>();
     ContactAdapter adapter;
 
     @Override

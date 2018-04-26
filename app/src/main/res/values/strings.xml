@@ -213,6 +213,7 @@
     <string name="camera">Camera</string>
     <string name="cancel">Cancel</string>
     <string name="carrier">Carrier SMS charges may apply</string>
+    <string name="check">Check-ins</string>
     <string name="create">Create</string>
 
     <string name="description">Want to describe?</string>
@@ -220,13 +221,18 @@
 
     <string name="enter_code">Enter 6-digit code</string>
 
+    <string name="friends">Friends</string>
+
     <string name="gallery">Gallery</string>
+
+    <string name="lahore">Lahore, Pakistan</string>
 
     <string name="mobile">MOBILE</string>
 
     <string name="next">next</string>
 
     <string name="phone_number">phone number</string>
+    <string name="places">Places</string>
     <string name="provide_info">Profile info</string>
     <string name="provide_profile_info">Please provide your name and profile photo</string>
 

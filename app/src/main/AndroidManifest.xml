@@ -32,7 +32,9 @@
         <activity android:name=".Contacts" />
         <activity android:name=".CreateJourneyActivity" />
         <activity android:name=".ShowJourney" />
-        <activity android:name=".JourneysLsitActivity"></activity>
+        <activity android:name=".JourneysLsitActivity" />
+        <activity android:name=".UserDetailsActivity"
+            android:theme="@style/AppTheme3" />
     </application>
 
 </manifest>
