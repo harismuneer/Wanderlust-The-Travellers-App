@@ -17,13 +17,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class JourneysLsitActivity extends AppCompatActivity {
 
@@ -60,6 +58,7 @@ public class JourneysLsitActivity extends AppCompatActivity {
                                 journeys.add(new JourneyMini(title, date, "Faisal Town", "Lahore", photo));
                             } catch (ParseException e) {}
                         }
+                        Collections.reverse(journeys);
                         JourneyLsitAdapter adapter = new JourneyLsitAdapter(context, journeys, bitmap, "Farhan");
                         ListView view = findViewById(R.id.journeysList);
                         view.setAdapter(adapter);
