@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class JourneyListAdapter extends ArrayAdapter<JourneyMini> {
     private ArrayList<JourneyMini> items;
@@ -71,7 +70,7 @@ public class JourneyListAdapter extends ArrayAdapter<JourneyMini> {
             public void onClick(View v) {
                 JourneyMini journey = (JourneyMini)  v.getTag();
                 if(journey != null) {
-                    Intent intent = new Intent(getContext(), ShowJourney.class);
+                    Intent intent = new Intent(getContext(), ShowJourneyActivity.class);
                     intent.putExtra("timestamp", new SimpleDateFormat(CreateJourneyActivity.DATE_FORMAT).format(journey.getDate()));
                     getContext().startActivity(intent);
                 }

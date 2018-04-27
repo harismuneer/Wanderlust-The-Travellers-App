@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class RegisterPhoneNumber extends AppCompatActivity {
+public class RegisterPhoneNumberActivity extends AppCompatActivity {
 
     String[] locales;
 

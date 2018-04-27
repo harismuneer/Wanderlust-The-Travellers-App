@@ -28,7 +28,7 @@ public class JourneysListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journeys_lsit);
+        setContentView(R.layout.activity_journeys_list);
 
         ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
         File file = wrapper.getDir("profilePictures",MODE_PRIVATE);
@@ -50,15 +50,19 @@ public class JourneysListActivity extends AppCompatActivity {
                                 String title = ds.child(CreateJourneyActivity.TITLE).getValue(String.class);
                                 File file = wrapper.getDir(ds.getKey(), MODE_PRIVATE);
                                 Uri photo = null;
+                                //if that journey has a photo then choose one photo from it.
                                 if (file.isDirectory()) {
                                     String[] images = file.list();
                                     if(images.length > 0)
                                         photo = Uri.parse(new File(file, images[0]).getAbsolutePath());
                                 }
+                                //Location of Journey par kaam karna abhi
                                 journeys.add(new JourneyMini(title, date, "Faisal Town", "Lahore", photo));
                             } catch (ParseException e) {}
                         }
                         Collections.reverse(journeys);
+
+                        //Kindly get username using database instead of hardcode
                         JourneyListAdapter adapter = new JourneyListAdapter(context, journeys, bitmap, "Farhan");
                         ListView view = findViewById(R.id.journeysList);
                         view.setAdapter(adapter);

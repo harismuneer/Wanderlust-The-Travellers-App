@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ShowJourney extends AppCompatActivity {
+public class ShowJourneyActivity extends AppCompatActivity {
     private ShowImagesAdapter adapter;
 
     @Override

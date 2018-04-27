@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".RegisterPhoneNumber"
+            android:name=".RegisterPhoneNumberActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,11 +28,11 @@
         <activity
             android:name=".VerifyPhoneNumberActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".SetProfileData" />
-        <activity android:name=".Extra" />
-        <activity android:name=".Contacts" />
+        <activity android:name=".SetProfileDataActivity" />
+        <activity android:name=".ExtraActivity" />
+        <activity android:name=".ContactsActivity" />
         <activity android:name=".CreateJourneyActivity" />
-        <activity android:name=".ShowJourney" />
+        <activity android:name=".ShowJourneyActivity" />
         <activity android:name=".JourneysListActivity" />
         <activity android:name=".UserDetailsActivity"
             android:theme="@style/AppTheme3" />

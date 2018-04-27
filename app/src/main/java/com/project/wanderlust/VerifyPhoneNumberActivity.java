@@ -60,7 +60,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                     mAuth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            Intent intent = new Intent(VerifyPhoneNumberActivity.this, SetProfileData.class);
+                            Intent intent = new Intent(VerifyPhoneNumberActivity.this, SetProfileDataActivity.class);
                             intent.putExtra("phone", string);
                             startActivity(intent);
                             finish();
@@ -83,7 +83,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                                 new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
-                                        Intent intent = new Intent(VerifyPhoneNumberActivity.this, SetProfileData.class);
+                                        Intent intent = new Intent(VerifyPhoneNumberActivity.this, SetProfileDataActivity.class);
                                         intent.putExtra("phone", string);
                                         startActivity(intent);
                                         finish();

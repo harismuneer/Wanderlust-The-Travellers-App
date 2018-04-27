@@ -31,7 +31,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SetProfileData extends AppCompatActivity {
+public class SetProfileDataActivity extends AppCompatActivity {
     private EditText name;
     private CircleImageView imageView;
     private DatabaseReference mDatabase;
@@ -87,7 +87,7 @@ public class SetProfileData extends AppCompatActivity {
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                    Toast.makeText(SetProfileData.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SetProfileDataActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -101,7 +101,7 @@ public class SetProfileData extends AppCompatActivity {
                         photo.compress(Bitmap.CompressFormat.JPEG,100,stream);
                     }
                     catch (Exception ex) {
-                        Toast.makeText(SetProfileData.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SetProfileDataActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                     finally {
                         try {
@@ -118,13 +118,13 @@ public class SetProfileData extends AppCompatActivity {
                     reference1.child("name").setValue(null);
                     reference1.child("status").setValue(null);
                     mDatabase.child("users").child(phone).setValue(map);
-                    startActivity(new Intent(SetProfileData.this, JourneysListActivity.class));
+                    startActivity(new Intent(SetProfileDataActivity.this, JourneysListActivity.class));
                     finish();
                 }
             });
         }
         catch (Exception ex) {
-            Toast.makeText(SetProfileData.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(SetProfileDataActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

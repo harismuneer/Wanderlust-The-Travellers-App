@@ -119,9 +119,12 @@ public class CreateJourneyActivity extends AppCompatActivity {
         map.put(DESCRIPTION, d);
         mReference.child(time).setValue(map);
 
-        Toast.makeText(this, "Journey Created", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Journey Created Successfully!", Toast.LENGTH_LONG).show();
+
+        onBackPressed();
     }
 
+    //We can show a dialog that are you sure you want to cancel?
     public void Cancel(View view) { onBackPressed(); }
 
     public void getCameraPicture(View view) {

@@ -1,7 +1,6 @@
 package com.project.wanderlust;
 
 import android.content.ContextWrapper;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,6 +49,6 @@ public class UserDetailsActivity extends AppCompatActivity {
         final Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(file, 100, 100);
         ((ImageView) findViewById(R.id.photo)).setImageBitmap(bitmap);
 
-        ((TextView) findViewById(R.id.friends)).setText(Integer.toString(Contacts.contactslist.size()));
+        ((TextView) findViewById(R.id.friends)).setText(Integer.toString(ContactsActivity.contactslist.size()));
     }
 }
