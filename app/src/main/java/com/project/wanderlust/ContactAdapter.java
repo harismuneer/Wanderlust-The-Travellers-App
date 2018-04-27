@@ -50,12 +50,17 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             return 0;
     }
 
-    public class ContactViewHolder extends RecyclerView.ViewHolder {
+
+    //View Holder for Contact
+    public class ContactViewHolder extends RecyclerView.ViewHolder
+    {
         public CircleImageView photoImageView;
         public LinearLayout layout;
         public TextView nameTextView;
         public TextView statusTextView;
-        public ContactViewHolder(View view) {
+
+        public ContactViewHolder(View view)
+        {
             super(view);
 
             photoImageView = view.findViewById(R.id.photo);

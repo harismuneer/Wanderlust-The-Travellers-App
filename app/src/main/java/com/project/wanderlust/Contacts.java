@@ -25,7 +25,7 @@ public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTo
     GestureDetector gestureDetector;
     Context c;
     RecyclerView rv;
-    final static ArrayList<Contact> arrayList = new ArrayList<>();
+    final static ArrayList<Contact> contactslist = new ArrayList<>();
     ContactAdapter adapter;
 
     @Override
@@ -47,11 +47,14 @@ public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTo
         loadContactsFromPhone();
     }
 
+    //Kindly add some comments for this function that what is it doing in each line
     private void loadContactsFromPhone() {
         final ArrayList<String> names = new ArrayList<>();
         final ArrayList<String> phones = new ArrayList<>();
+
         ContentResolver cr = getContentResolver();
         Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+
         while (cursor.moveToNext()) {
             String contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
 
@@ -73,9 +76,10 @@ public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTo
         loadPeopleFromFirebase(names, phones);
     }
 
-    private void loadPeopleFromFirebase(final ArrayList<String> names, final ArrayList<String> phones) {
+    private void loadPeopleFromFirebase(final ArrayList<String> names, final ArrayList<String> phones) 
+    {
         final Context context = this;
-        arrayList.clear();
+        contactslist.clear();
 
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -89,7 +93,7 @@ public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTo
                     //checking if obtaining user is not logged in user or phone contact
                     if(!number.equals(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()) && phones.contains(number)) {
                         if((i = phones.indexOf(number)) != -1) {
-                            arrayList.add(new Contact(null, names.get(i), status, number));
+                            contactslist.add(new Contact(null, names.get(i), status, number));
                         }
                     }
                 }
@@ -101,7 +105,7 @@ public class Contacts extends AppCompatActivity implements RecyclerView.OnItemTo
     }
 
     private void viewFriends() {
-        adapter = new ContactAdapter(arrayList, R.layout.contact_cell);
+        adapter = new ContactAdapter(contactslist, R.layout.contact_cell);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.addOnItemTouchListener(this);
         rv.setItemAnimator(new DefaultItemAnimator());
