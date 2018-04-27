@@ -4,9 +4,9 @@
 
     <string name="camera">کیمرہ</string>
     <string name="cancel">منسوخ</string>
+    <string name="carrier">کیریئر ایس ایم ایس چارجز لاگو کر سکتے ہیں</string>
     <string name="create">بنائیں</string>
     <string name="check">چیک ان</string>
-    <string name="carrier">کیریئر ایس ایم ایس چارجز لاگو کر سکتے ہیں</string>
 
     <string name="description">بیان کرنا چاہتے ہیں</string>
     <string name="desc">تفصیل</string>
@@ -36,6 +36,6 @@
     <string name="verify_2">Wanderlust آپ کے فون نمبر کی تصدیق کے لئے ایک ایس ایم ایس پیغام بھیجیں گے. اپنا ملک کوڈ اور فون نمبر داخل کریں:</string>
     <string name="verify_3">تصدیق</string>
 
-    <string name="wrong_no">غلط نمبر؟</string>
     <string name="waiting">خود کار طریقے سے ایس ایم ایس کو بھیجنے کا منتظر ہے</string>
+    <string name="wrong_no">غلط نمبر؟</string>
 </resources>
