@@ -27,7 +27,7 @@ public class JourneyLsitAdapter extends ArrayAdapter<JourneyMini> {
         this.items = items;
         this.userPic = userPic;
         this.userName = userName;
-
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Nullable
@@ -44,8 +44,8 @@ public class JourneyLsitAdapter extends ArrayAdapter<JourneyMini> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        convertView = inflater.inflate(R.layout.journey_cell, null);
+        if(convertView == null)
+            convertView = inflater.inflate(R.layout.journey_cell, null);
         JourneyMini item = getItem(position);
         ((ImageView) convertView.findViewById(R.id.photo)).setImageBitmap(userPic);
         ((TextView) convertView.findViewById(R.id.userName)).setText(userName);
@@ -59,6 +59,10 @@ public class JourneyLsitAdapter extends ArrayAdapter<JourneyMini> {
             ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
             layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
             imageView.setLayoutParams(layoutParams);
+        }
+        else {
+            ImageView imageView = convertView.findViewById(R.id.journeyPic);
+            imageView.setImageBitmap(null);
         }
 
         convertView.setTag(item);
