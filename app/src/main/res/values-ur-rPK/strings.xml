@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wanderlust</string>
+    <string name="camera">کیمرہ</string>
+    <string name="cancel">منسوخ</string>
+    <string name="create">بنائیں</string>
+    <string name="description">بیان کرنا چاہتے ہیں</string>
+    <string name="desc">تفصیل</string>
+    <string name="enter_code">چھ ہندسوں کا کوڈ داخل کریں</string>
+    <string name="friends">دوست</string>
+    <string name="gallery">گیلری</string>
+    <string name="lahore">لاہور، پاکستان</string>
+    <string name="mobile">موبائل</string>
+    <string name="phone_number">فون نمبر</string>
+    <string name="places">مقامات</string>
+    <string name="provide_info">پروفائل کی معلومات</string>
+    <string name="provide_profile_info">برائے مہربانی اپنا نام اور پروفائل تصویر فراہم کریں</string>
+    <string name="title">اپنا سفر ایک عنوان دیں</string>
+    <string name="title1">عنوان</string>
+    <string name="type_name">اپنا نام یہاں درج کریں</string>
+    <string name="verify">اپنے فون نمبر کی تصدیق کریں</string>
+    <string name="verify_3">تصدیق</string>
+    <string name="wrong_no">غلط نمبر؟</string>
+    <string name="verify_2">Wanderlust آپ کے فون نمبر کی تصدیق کے لئے ایک ایس ایم ایس پیغام بھیجیں گے. اپنا ملک کوڈ اور فون نمبر داخل کریں:</string>
+    <string name="waiting">خود کار طریقے سے ایس ایم ایس کو بھیجنے کا منتظر ہے</string>
+    <string name="next">اگلا</string>
+    <string name="check">چیک ان</string>
+    <string name="carrier">کیریئر ایس ایم ایس چارجز لاگو کر سکتے ہیں</string>
+</resources>
