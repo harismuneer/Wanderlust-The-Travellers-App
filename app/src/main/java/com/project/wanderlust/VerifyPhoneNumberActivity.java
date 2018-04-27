@@ -35,10 +35,11 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String string = (String) intent.getSerializableExtra("phone");
+
         TextView verify = findViewById(R.id.verify);
         verify.setText(getString(R.string.verify_3) + " " + string + " ");
         TextView phone = findViewById(R.id.phone);
-        phone.setText(string);
+        phone.setText(string + ". ");
 
         //text change listener on text field for 6 digit code
         //called whenever user type
@@ -71,6 +72,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                 }
             }
         });
+
 
         //signing in user using automatic message recognition
         PhoneAuthProvider.getInstance().verifyPhoneNumber(string, 60, TimeUnit.SECONDS, this,

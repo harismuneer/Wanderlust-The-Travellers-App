@@ -16,13 +16,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class JourneyLsitAdapter extends ArrayAdapter<JourneyMini> {
+public class JourneyListAdapter extends ArrayAdapter<JourneyMini> {
     private ArrayList<JourneyMini> items;
     private Bitmap userPic;
     private String userName;
     private LayoutInflater inflater;
 
-    public JourneyLsitAdapter(Context context, ArrayList<JourneyMini> items, Bitmap userPic, String userName) {
+    public JourneyListAdapter(Context context, ArrayList<JourneyMini> items, Bitmap userPic, String userName) {
         super(context, 0, items);
         this.items = items;
         this.userPic = userPic;

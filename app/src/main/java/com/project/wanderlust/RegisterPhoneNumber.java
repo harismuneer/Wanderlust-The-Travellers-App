@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,7 +23,8 @@ import java.util.Locale;
 
 public class RegisterPhoneNumber extends AppCompatActivity {
 
-    private String[] locales;
+    String[] locales;
+
     FirebaseAuth mAuth;
 
     @Override
@@ -62,12 +64,13 @@ public class RegisterPhoneNumber extends AppCompatActivity {
         //checking if user already signed in
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this, JourneysLsitActivity.class));
+            startActivity(new Intent(this, JourneysListActivity.class));
             finish();
         }
 
         createCountryDropDownMenu();
     }
+
 
     private void createCountryDropDownMenu() {
         ArrayList<String> countries= getCountryNames();
@@ -76,8 +79,9 @@ public class RegisterPhoneNumber extends AppCompatActivity {
         Spinner countrySpinner = findViewById(R.id.country);
         countrySpinner.setAdapter(adapter);
 
-        //setting country to current country
+        //setting country by default to Pakistan
         String currentCountry = "Pakistan";
+
         for(int i = 0; i < countries.size(); i++) {
             if(countries.get(i).equals(currentCountry)) {
                 countrySpinner.setSelection(i);
@@ -111,12 +115,19 @@ public class RegisterPhoneNumber extends AppCompatActivity {
         TextView editText1 = findViewById(R.id.countryCode);
         EditText editText2 = findViewById(R.id.phone);
 
+        if (editText2.getText().length() == 0) {
+            Toast.makeText(this, "Phone number required.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent intent = new Intent(this, VerifyPhoneNumberActivity.class);
         intent.putExtra("phone", editText1.getText().toString() + editText2.getText().toString());
         startActivity(intent);
     }
 
+
+    // returns an arraylist containing country names
     public ArrayList<String> getCountryNames() {
+
         //Getting country ISOs
         locales = Locale.getISOCountries();
         ArrayList<String> countries = new ArrayList<>();

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
-public class JourneysLsitActivity extends AppCompatActivity {
+public class JourneysListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class JourneysLsitActivity extends AppCompatActivity {
                             } catch (ParseException e) {}
                         }
                         Collections.reverse(journeys);
-                        JourneyLsitAdapter adapter = new JourneyLsitAdapter(context, journeys, bitmap, "Farhan");
+                        JourneyListAdapter adapter = new JourneyListAdapter(context, journeys, bitmap, "Farhan");
                         ListView view = findViewById(R.id.journeysList);
                         view.setAdapter(adapter);
                     }

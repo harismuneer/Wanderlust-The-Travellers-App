@@ -227,13 +227,13 @@
 
     <string name="lahore">Lahore, Pakistan</string>
 
-    <string name="mobile">MOBILE</string>
+    <string name="mobile">Mobile</string>
 
-    <string name="next">next</string>
+    <string name="next">Next</string>
 
-    <string name="phone_number">phone number</string>
+    <string name="phone_number">Phone Number</string>
     <string name="places">Places</string>
-    <string name="provide_info">Profile info</string>
+    <string name="provide_info">Profile Info</string>
     <string name="provide_profile_info">Please provide your name and profile photo</string>
 
     <string name="title">Give your Journey a Title</string>
@@ -241,9 +241,9 @@
     <string name="type_name">Type your name here</string>
 
     <string name="verify">Verify your phone number</string>
-    <string name="verify_2">Wanderlust will send an SMS message to verify your phone number. Enter your country code and phone number:</string>
+    <string name="verify_2">Wanderlust will send an SMS message to verify your phone number. Enter your country code and phone number: </string>
     <string name="verify_3">Verify</string>
 
-    <string name="waiting">Waiting to automatically detect an SMS sent to</string>
-    <string name="wrong_no">Wrong number?</string>
+    <string name="waiting">Waiting to automatically detect an SMS sent to </string>
+    <string name="wrong_no"> Wrong number?</string>
 </resources>

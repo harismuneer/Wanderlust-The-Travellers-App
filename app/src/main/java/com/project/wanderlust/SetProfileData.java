@@ -39,14 +39,18 @@ public class SetProfileData extends AppCompatActivity {
     private StorageReference storageRef;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_profile_data);
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         storageRef = FirebaseStorage.getInstance().getReference();
+
         Intent intent = getIntent();
         phone = (String) intent.getSerializableExtra("phone");
         name = findViewById(R.id.name);
+
         imageView = findViewById(R.id.photo);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +73,8 @@ public class SetProfileData extends AppCompatActivity {
             Toast.makeText(this, "Must input Name", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        //got photo and name, now storing them
 
         StorageReference reference = storageRef.child("profilePictures/" + phone + ".jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -112,7 +118,7 @@ public class SetProfileData extends AppCompatActivity {
                     reference1.child("name").setValue(null);
                     reference1.child("status").setValue(null);
                     mDatabase.child("users").child(phone).setValue(map);
-                    startActivity(new Intent(SetProfileData.this, JourneysLsitActivity.class));
+                    startActivity(new Intent(SetProfileData.this, JourneysListActivity.class));
                     finish();
                 }
             });
