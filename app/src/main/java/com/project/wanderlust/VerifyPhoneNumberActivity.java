@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,22 +54,31 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if(s.length() == 6) {
-                    //making credentials using code sent from firebase and code user typed
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(code, s.toString());
+                    try {
+                        //making credentials using code sent from firebase and code user typed
+                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(code, s.toString());
 
-                    //signing in user to firebase if code was correct otherwise showing error message
-                    mAuth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            Intent intent = new Intent(VerifyPhoneNumberActivity.this, SetProfileDataActivity.class);
-                            intent.putExtra("phone", string);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) { Toast.makeText(VerifyPhoneNumberActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show(); }
-                    });
+                        //signing in user to firebase if code was correct otherwise showing error message
+                        mAuth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                Intent intent = new Intent(VerifyPhoneNumberActivity.this, SetProfileDataActivity.class);
+                                intent.putExtra("phone", string);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(VerifyPhoneNumberActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    catch (Exception e)
+                    {
+                        Crashlytics.logException(e);
+                        Toast.makeText(VerifyPhoneNumberActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
