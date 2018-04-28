@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wanderlust</string>
+    <string name="camera">Cámara</string>
+    <string name="cancel">Cancelar</string>
+    <string name="carrier">Se pueden aplicar cargos por SMS del operador</string>
+    <string name="check">Registrarses</string>
+    <string name="create">Crear</string>
+    <string name="description">¿Quieres describir?</string>
+    <string name="desc">Descripción</string>
+    <string name="enter_code">Ingrese el código de 6 dígitos</string>
+    <string name="friends">Amigos</string>
+    <string name="gallery">Galería</string>
+    <string name="lahore">Lahore, Pakistán</string>
+    <string name="mobile">Móvil</string>
+    <string name="next">Siguiente</string>
+    <string name="phone_number">Número de teléfono</string>
+    <string name="places">Lugares</string>
+    <string name="provide_info">" Información de perfil"</string>
+    <string name="provide_profile_info">Por favor ingrese su nombre y foto de perfil</string>
+    <string name="title">Dale a tu viaje un título</string>
+    <string name="title1">Título</string>
+    <string name="type_name">" Escribe tu nombre aquí"</string>
+    <string name="verify">" Verifica tu numero de telefono"</string>
+    <string name="verify_2">Wanderlust enviará un mensaje de texto para verificar su número de teléfono. Ingrese su código de país y número de teléfono:</string>
+    <string name="verify_3">Verificar</string>
+    <string name="waiting">Esperando para detectar automáticamente un SMS enviado a</string>
+    <string name="wrong_no">" ¿Número equivocado?"</string>
+</resources>
