@@ -38,7 +38,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                 holder.photoImageView.setImageBitmap(cell.getPhoto());
             }
             holder.nameTextView.setText(cell.getName());
-            holder.statusTextView.setText(cell.getStatus());
+            holder.statusTextView.setText(cell.getPhone());
         }
     }
 
