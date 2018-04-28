@@ -29,11 +29,11 @@
 
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/createjourney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/plus"
         app:backgroundTint="@color/appOrange"
-        android:onClick="createJourney"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"

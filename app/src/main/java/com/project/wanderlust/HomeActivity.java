@@ -43,6 +43,10 @@ public class HomeActivity extends FragmentActivity  {
         }
     };
 
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -86,7 +90,7 @@ public class HomeActivity extends FragmentActivity  {
         setContentView(R.layout.activity_home);
 
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         bottombar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottombar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -131,6 +135,7 @@ public class HomeActivity extends FragmentActivity  {
             if ((position == 0) && (fragmentslist[position] == null))
             {
                 //fragmentslist[position] = new ShowNotesFragment();
+                fragmentslist[position] =  new JourneysListFragment();  //testing
             }
             else if ((position == 1) && (fragmentslist[position] == null))
             {

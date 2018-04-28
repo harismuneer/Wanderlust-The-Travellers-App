@@ -1,6 +1,7 @@
 package com.project.wanderlust;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -84,6 +85,13 @@ public class JourneysListFragment extends Fragment {
                     @Override public void onCancelled(DatabaseError databaseError) { }
                 });
 
+        FloatingActionButton button = (FloatingActionButton) getView().findViewById(R.id.createjourney);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createJourney(null);
+            }
+        });
     }
 
     public void createJourney(View view) {
