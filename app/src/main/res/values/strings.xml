@@ -246,4 +246,15 @@
 
     <string name="waiting">Waiting to automatically detect an SMS sent to </string>
     <string name="wrong_no"> Wrong number?</string>
+
+
+    <string name="title_activity_home">Wanderlust</string>
+
+    <string name="title_notes">Notes</string>
+    <string name="title_journeys">Journeys</string>
+    <string name="title_friends">Friends</string>
+
+    <string name="action_profile">Profile</string>
+    <string name="action_invitelink">Invite</string>
+
 </resources>

@@ -24,7 +24,6 @@ import java.util.Locale;
 public class RegisterPhoneNumberActivity extends AppCompatActivity {
 
     String[] locales;
-
     FirebaseAuth mAuth;
 
     @Override
@@ -35,7 +34,7 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
         //making firebase persistent
         try {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-            FirebaseDatabase.getInstance().getReference("users").keepSynced(true);
+            FirebaseDatabase.getInstance().getReference("Users").keepSynced(true);
             FirebaseDatabase.getInstance().getReference("Journeys").keepSynced(true);
             FirebaseDatabase.getInstance().getReference("inviteLink").keepSynced(true);
         }
@@ -64,8 +63,7 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
         //checking if user already signed in
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this, ContactsActivity.class));
-            finish();
+            startActivity(new Intent(this, HomeActivity.class));
         }
 
         createCountryDropDownMenu();

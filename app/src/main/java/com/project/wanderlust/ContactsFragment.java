@@ -1,5 +1,6 @@
 package com.project.wanderlust;
 
+import android.support.v4.app.Fragment;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -7,14 +8,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,22 +32,33 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.util.ArrayList;
 
-public class ContactsActivity extends AppCompatActivity implements RecyclerView.OnItemTouchListener{
+import static android.content.Context.MODE_PRIVATE;
+
+public class ContactsFragment extends Fragment implements RecyclerView.OnItemTouchListener{
     GestureDetector gestureDetector;
     Context c;
     RecyclerView rv;
     final static ArrayList<Contact> contactslist = new ArrayList<>();
     ContactAdapter adapter;
 
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View rootView = inflater.inflate(R.layout.fragment_contacts, container, false);
+
+        return rootView;
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacts);
+    public void onStart() {
+        super.onStart();
 
-        c = this;
-        rv = findViewById(R.id.contactRecyclerView);
+        c = getContext();
 
-        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener()
+        rv = getView().findViewById(R.id.contactRecyclerView);
+
+        gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener()
         {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
@@ -69,7 +82,7 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
         final ArrayList<String> names = new ArrayList<>();
         final ArrayList<String> phones = new ArrayList<>();
 
-        ContentResolver cr = getContentResolver();
+        ContentResolver cr = getActivity().getContentResolver();
         Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
 
         while (cursor.moveToNext()) {
@@ -95,7 +108,7 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
 
     private void loadPeopleFromFirebase(final ArrayList<String> names, final ArrayList<String> phones) 
     {
-        final Context context = this;
+        final Context context = getContext();
         contactslist.clear();
 
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users");
@@ -103,8 +116,8 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int i;
-                ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
-                File file = wrapper.getDir("profilePictures",MODE_PRIVATE);
+                ContextWrapper wrapper = new ContextWrapper(context);
+                File file = wrapper.getDir("profilePictures", MODE_PRIVATE);
                 StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("profilePictures");
                 //going through all users present in firebase
                 for(DataSnapshot ds: dataSnapshot.getChildren()) {
@@ -138,7 +151,7 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
 
     private void viewFriends() {
         adapter = new ContactAdapter(contactslist, R.layout.contact_cell);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.addOnItemTouchListener(this);
         rv.setItemAnimator(new DefaultItemAnimator());
         rv.setAdapter(adapter);
@@ -147,7 +160,7 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
         gestureDetector.onTouchEvent(e);
-        return true;
+        return false;
     }
 
     @Override public void onTouchEvent(RecyclerView rv, MotionEvent e) { }

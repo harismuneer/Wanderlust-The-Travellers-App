@@ -21,7 +21,7 @@ public class ExtraActivity extends AppCompatActivity {
 
     public void invite(View view) {
         //requesting for invite link
-        FirebaseDatabase.getInstance().getReference("inviteLink").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("InviteLink").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -33,7 +33,7 @@ public class ExtraActivity extends AppCompatActivity {
 
                 //making invite request
                 Intent intent = new AppInviteInvitation.IntentBuilder("Hey check this app")
-                        .setMessage("Hey that's a new messaging app. " + link)
+                        .setMessage("Hey that's a new cool journey app. " + link)
                         .setCallToActionText("Share")
                         .build();
                 startActivityForResult(intent, 2);

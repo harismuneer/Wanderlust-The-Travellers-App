@@ -53,6 +53,6 @@ public class UserDetailsActivity extends AppCompatActivity {
             final Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(file, 500, 500);
             ((ImageView) findViewById(R.id.photo)).setImageBitmap(bitmap);
         }
-        ((TextView) findViewById(R.id.friends)).setText(Integer.toString(ContactsActivity.contactslist.size()));
+        ((TextView) findViewById(R.id.friends)).setText(Integer.toString(ContactsFragment.contactslist.size()));
     }
 }

@@ -1,13 +1,16 @@
 package com.project.wanderlust;
 
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,25 +26,35 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
-public class JourneysListActivity extends AppCompatActivity {
+import static android.content.Context.MODE_PRIVATE;
+
+public class JourneysListFragment extends Fragment {
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View rootView = inflater.inflate(R.layout.fragment_journeys_list, container, false);
+
+        return rootView;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journeys_list);
+    public void onStart()
+    {
+        super.onStart();
 
-        ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
+        final Context context = getContext();
+
+        ContextWrapper wrapper = new ContextWrapper(context);
         File file = wrapper.getDir("profilePictures",MODE_PRIVATE);
         file = new File(file, FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber() + ".jpg");
         final Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(file, 100, 100);
         //((CircleImageView) findViewById(R.id.userPhoto)).setImageBitmap(bitmap);
-        final Context context = this;
 
         FirebaseDatabase.getInstance().getReference("Journeys").child(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
+                        ContextWrapper wrapper = new ContextWrapper(context);
                         ArrayList<JourneyMini> journeys = new ArrayList<>();
                         SimpleDateFormat format = new SimpleDateFormat(CreateJourneyActivity.DATE_FORMAT);
                         for(DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -64,15 +77,16 @@ public class JourneysListActivity extends AppCompatActivity {
 
                         //Kindly get username using database instead of hardcode
                         JourneyListAdapter adapter = new JourneyListAdapter(context, journeys, bitmap, "Farhan");
-                        ListView view = findViewById(R.id.journeysList);
+                        ListView view = getView().findViewById(R.id.journeysList);
                         view.setAdapter(adapter);
                     }
 
                     @Override public void onCancelled(DatabaseError databaseError) { }
                 });
+
     }
 
     public void createJourney(View view) {
-        startActivity(new Intent(this, CreateJourneyActivity.class));
+        startActivity(new Intent(getActivity(), CreateJourneyActivity.class));
     }
 }
