@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "788286829576-jumlcgsghbvkdmlromcdvsve9jjhp375.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.wanderlust",
+            "certificate_hash": "e22a594f6b5b40c78aa7a56649674dc53689f656"
+          }
+        },
+        {
+          "client_id": "788286829576-tqepot4avck71eabqlr6q8ltf4tgdhie.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.wanderlust",
+            "certificate_hash": "cf4e5a59c8b15e300e8a523a1d6c2ae741538291"
+          }
+        },
+        {
           "client_id": "788286829576-tinbpukscr6k5mr6rn9u2h3eo7p2fg0t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
