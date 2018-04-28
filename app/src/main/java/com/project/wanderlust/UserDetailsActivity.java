@@ -1,13 +1,13 @@
 package com.project.wanderlust;
 
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,7 +22,10 @@ public class UserDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
 
-        FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber())
+        Intent intent = getIntent();
+        String phone = (String) intent.getSerializableExtra("phoneNumber");
+
+        FirebaseDatabase.getInstance().getReference("users").child(phone)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -32,7 +35,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     @Override public void onCancelled(DatabaseError databaseError) { }
                 });
 
-        FirebaseDatabase.getInstance().getReference("Journeys").child(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber())
+        FirebaseDatabase.getInstance().getReference("Journeys").child(phone)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -45,10 +48,11 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
         File file = wrapper.getDir("profilePictures",MODE_PRIVATE);
-        file = new File(file, FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber() + ".jpg");
-        final Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(file, 100, 100);
-        ((ImageView) findViewById(R.id.photo)).setImageBitmap(bitmap);
-
+        file = new File(file, phone + ".jpg");
+        if(file.exists()) {
+            final Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(file, 500, 500);
+            ((ImageView) findViewById(R.id.photo)).setImageBitmap(bitmap);
+        }
         ((TextView) findViewById(R.id.friends)).setText(Integer.toString(ContactsActivity.contactslist.size()));
     }
 }

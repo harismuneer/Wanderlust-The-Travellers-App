@@ -2,7 +2,10 @@ package com.project.wanderlust;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,14 +14,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ContactsActivity extends AppCompatActivity implements RecyclerView.OnItemTouchListener{
@@ -40,7 +49,15 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
         {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                return super.onSingleTapUp(e);
+                View child = rv.findChildViewUnder(e.getX(), e.getY());
+                if(child != null)
+                {
+                    int position = rv.getChildAdapterPosition(child);
+                    Intent intent = new Intent(ContactsActivity.this, UserDetailsActivity.class);
+                    intent.putExtra("phoneNumber", contactslist.get(position).getPhone());
+                    startActivity(intent);
+                }
+                return true;
             }
         });
 
@@ -86,6 +103,9 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int i;
+                ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
+                File file = wrapper.getDir("profilePictures",MODE_PRIVATE);
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("profilePictures");
                 //going through all users present in firebase
                 for(DataSnapshot ds: dataSnapshot.getChildren()) {
                     String number = ds.getKey();
@@ -93,7 +113,19 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
                     //checking if obtaining user is not logged in user or phone contact
                     if(!number.equals(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()) && phones.contains(number)) {
                         if((i = phones.indexOf(number)) != -1) {
-                            contactslist.add(new Contact(null, names.get(i), status, number));
+                            final File file1 = new File(file, number + ".jpg");
+                            //user profile pic is present in phone
+                            if(file1.exists()) {
+                                final Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(file1, 100, 100);
+                                contactslist.add(new Contact(bitmap, names.get(i), status, number));
+                            }
+                            else {
+                                final StorageReference reference = storageRef.child(number + ".jpg");
+                                reference.getFile(file1).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                                    @Override public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) { }
+                                });
+                                contactslist.add(new Contact(null, names.get(i), status, number));
+                            }
                         }
                     }
                 }
@@ -114,7 +146,8 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
 
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-        return false;
+        gestureDetector.onTouchEvent(e);
+        return true;
     }
 
     @Override public void onTouchEvent(RecyclerView rv, MotionEvent e) { }
