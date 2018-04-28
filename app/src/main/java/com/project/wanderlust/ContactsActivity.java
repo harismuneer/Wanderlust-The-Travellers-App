@@ -53,7 +53,7 @@ public class ContactsActivity extends AppCompatActivity implements RecyclerView.
                 if(child != null)
                 {
                     int position = rv.getChildAdapterPosition(child);
-                    Intent intent = new Intent(ContactsActivity.this, UserDetailsActivity.class);
+                    Intent intent = new Intent(c, UserDetailsActivity.class);
                     intent.putExtra("phoneNumber", contactslist.get(position).getPhone());
                     startActivity(intent);
                 }
