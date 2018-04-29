@@ -4,28 +4,20 @@ package com.project.wanderlust;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
-public class SplashScreenAcitivity extends AppCompatActivity {
+public class AcitivitySplashScreen extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 5000;
     public  LinearLayout linear;
     public  FirebaseRemoteConfig config;
     public  long cacheExpiration;
@@ -38,7 +30,6 @@ public class SplashScreenAcitivity extends AppCompatActivity {
 
         MobileAds.initialize(this, adID);
 
-
         config = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
                 .setDeveloperModeEnabled(true)
@@ -47,12 +38,13 @@ public class SplashScreenAcitivity extends AppCompatActivity {
 
         config.setDefaults(R.xml.config_default);
 
-        cacheExpiration = 3600; // 1 hour in seconds.
-        // If your app is using developer mode, cacheExpiration is set to 0, so each fetch will
-        // retrieve values from the service.
+        cacheExpiration = 3600;
         if (config.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
             cacheExpiration = 0;
         }
+
+        setContentView(R.layout.activity_splash_screen);
+        linear =  (LinearLayout)findViewById(R.id.splashlinear);
 
         config.fetch(cacheExpiration).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -62,19 +54,9 @@ public class SplashScreenAcitivity extends AppCompatActivity {
                 Drawable splash =  getResources().getDrawable(getResources()
                         .getIdentifier(splashdisplay, "drawable", getPackageName()));
                 linear.setBackground(splash);
+                Toast.makeText(getApplicationContext(),"Splash Screen changed according to your preference :)",Toast.LENGTH_SHORT).show();
             }
         });
-
-        //get default value
-        String splashdisplay = config.getString("splash");
-
-        setContentView(R.layout.activity_splash_screen);
-        linear =  (LinearLayout)findViewById(R.id.splashlinear);
-
-        Drawable splash =  getResources().getDrawable(getResources()
-                .getIdentifier(splashdisplay, "drawable", getPackageName()));
-        linear.setBackground(splash);
-
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -84,12 +66,10 @@ public class SplashScreenAcitivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Start your app main activity
-                Intent i = new Intent(SplashScreenAcitivity.this, RegisterPhoneNumberActivity.class);
+                Intent i = new Intent(AcitivitySplashScreen.this, ActivityRegisterPhoneNumber.class);
                 startActivity(i);
-
                 finish();
             }
         }, SPLASH_TIME_OUT);
-
     }
 }

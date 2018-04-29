@@ -248,7 +248,7 @@
     <string name="wrong_no"> Wrong number?</string>
 
 
-    <string name="title_activity_home">Wanderlust</string>
+    <string name="title_activity_home">Home</string>
 
     <string name="title_notes">Notes</string>
     <string name="title_journeys">Journeys</string>
@@ -256,5 +256,7 @@
 
     <string name="action_profile">Profile</string>
     <string name="action_invitelink">Share</string>
+    <string name="action_voice">Voice Commands</string>
+
 
 </resources>

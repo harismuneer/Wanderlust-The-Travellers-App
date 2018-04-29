@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:theme="@style/AppTheme.NoActionBar"
-    tools:context=".ExtraActivity">
+    tools:context=".ActivityExtra">
 
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_marginBottom="100dp"
         android:fontFamily="cursive"
         android:gravity="center"
-        android:text="Wanderlust"
+        android:text="Send Invites"
         android:textColor="@android:color/holo_red_light"
         android:textSize="70sp"
         android:textStyle="bold" />
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:background="@color/appOrange"
         android:onClick="invite"
-        android:text="Invite"
+        android:text="Send"
         android:theme="@style/AppTheme" />
 
 

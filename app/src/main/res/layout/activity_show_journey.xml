@@ -10,41 +10,47 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ShowJourneyActivity">
+        tools:context=".ActivityShowJourney">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/title1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
+            android:gravity="left"
             android:text="@string/title1"
-            android:textSize="30sp"/>
+            android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/description1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/desc"
-            android:textSize="20sp"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="3dp" />
+            android:layout_marginTop="3dp"
+            android:gravity="left"
+            android:text="@string/desc"
+            android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/date1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00-00-0000 00:00"/>
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="3dp"
+            android:gravity="left"
+            android:text="00-00-0000 00:00" />
 
         <GridView
-            android:id="@+id/photo"
+            android:id="@+id/photo1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:numColumns="3"
             android:horizontalSpacing="5dp"
+            android:numColumns="3"
             android:verticalSpacing="5dp">
 
         </GridView>
@@ -52,14 +58,15 @@
 
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/createjourney"
+        android:id="@+id/speakjourney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
-        android:src="@drawable/mike"
+        android:src="@drawable/speech"
+        app:backgroundTint="@color/colorAccent"
         app:fabSize="normal" />
 
 </RelativeLayout>

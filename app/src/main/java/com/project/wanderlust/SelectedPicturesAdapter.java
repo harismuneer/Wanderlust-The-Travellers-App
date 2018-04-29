@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -12,10 +11,12 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-public class SelectedPicturesAdapter extends ArrayAdapter<Bitmap> {
+public class SelectedPicturesAdapter extends ArrayAdapter<Bitmap>
+{
     private ArrayList<Bitmap> items;
 
-    public SelectedPicturesAdapter(Context context, ArrayList<Bitmap> items) {
+    public SelectedPicturesAdapter(Context context, ArrayList<Bitmap> items)
+    {
         super(context, 0, items);
         this.items = items;
     }
@@ -33,9 +34,10 @@ public class SelectedPicturesAdapter extends ArrayAdapter<Bitmap> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
+    {
         Bitmap bitmap = getItem(position);
-        ImageView imageView = new SquareImageView(getContext());
+        ImageView imageView = new ViewSquareImage(getContext());
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setImageBitmap(bitmap);
         convertView = imageView;

@@ -3,7 +3,6 @@ package com.project.wanderlust;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,15 +17,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 
-public class UserDetailsActivity extends AppCompatActivity {
+public class ActivityUserDetails extends ActionBarMenu {
 
     private AdView mAdView;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         //Google Admob
         try {
@@ -42,7 +44,8 @@ public class UserDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String phone = (String) intent.getSerializableExtra("phoneNumber");
 
-        FirebaseDatabase.getInstance().getReference("users").child(phone)
+        //Get Name
+        FirebaseDatabase.getInstance().getReference("Users").child(phone)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -52,6 +55,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     @Override public void onCancelled(DatabaseError databaseError) { }
                 });
 
+        //Get Check-Ins Count
         FirebaseDatabase.getInstance().getReference("Journeys").child(phone)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -63,6 +67,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     @Override public void onCancelled(DatabaseError databaseError) { }
                 });
 
+        //Get Profile Picture
         ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
         File file = wrapper.getDir("profilePictures",MODE_PRIVATE);
         file = new File(file, phone + ".jpg");
@@ -70,12 +75,13 @@ public class UserDetailsActivity extends AppCompatActivity {
             final Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(file, 500, 500);
             ((ImageView) findViewById(R.id.photo)).setImageBitmap(bitmap);
         }
-        ((TextView) findViewById(R.id.friends)).setText(Integer.toString(ContactsFragment.contactslist.size()));
+
+        //Set Friends Count
+        ((TextView) findViewById(R.id.friends)).setText(Integer.toString(FragmentContactsList.contactslist.size()));
     }
 
 
-
-
+    //----------------------ADMOB----------------------------//
 
     //For Admob
     @Override

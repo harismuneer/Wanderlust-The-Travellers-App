@@ -12,11 +12,12 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
+public class AdapterContactsList extends RecyclerView.Adapter<AdapterContactsList.ContactViewHolder>
+{
     private ArrayList<Contact> items;
     private int itemLayout;
 
-    public ContactAdapter(ArrayList<Contact> items, int itemLayout) {
+    public AdapterContactsList(ArrayList<Contact> items, int itemLayout) {
         this.items = items;
         this.itemLayout = itemLayout;
     }
@@ -63,10 +64,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         {
             super(view);
 
-            photoImageView = view.findViewById(R.id.photo);
-            layout = view.findViewById(R.id.layout);
-            nameTextView = view.findViewById(R.id.person);
-            statusTextView = view.findViewById(R.id.status);
+            photoImageView = view.findViewById(R.id.photo2);
+            layout = view.findViewById(R.id.layout2);
+            nameTextView = view.findViewById(R.id.person2);
+            statusTextView = view.findViewById(R.id.status2);
         }
     }
 }

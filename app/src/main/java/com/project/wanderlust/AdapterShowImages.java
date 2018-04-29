@@ -14,11 +14,12 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 
-public class ShowImagesAdapter extends ArrayAdapter<Uri> {
+public class AdapterShowImages extends ArrayAdapter<Uri>
+{
     private ArrayList<Uri> items;
     private LayoutInflater inflater;
 
-    public ShowImagesAdapter(Context context, ArrayList<Uri> items) {
+    public AdapterShowImages(Context context, ArrayList<Uri> items) {
         super(context, 0, items);
         this.items = items;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

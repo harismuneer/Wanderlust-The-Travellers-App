@@ -1,24 +1,19 @@
 package com.project.wanderlust;
 
-import android.app.ActionBar;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class HomeActivity extends FragmentActivity  {
 
-    private TextView mTextMessage;
+
+public class ActivityHome extends ActionBarMenu {
+
     private ViewPager viewPager;
     private BottomNavigationView bottombar;
 
@@ -43,7 +38,6 @@ public class HomeActivity extends FragmentActivity  {
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,6 +49,8 @@ public class HomeActivity extends FragmentActivity  {
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new FPagerAdapter(getSupportFragmentManager()));
+
+        viewPager.setOffscreenPageLimit(3);
 
         //When swipe occurs
         viewPager.setOnPageChangeListener(
@@ -77,8 +73,6 @@ public class HomeActivity extends FragmentActivity  {
     //Fragment Pager Adapter
     public class FPagerAdapter extends FragmentPagerAdapter
     {
-
-        Fragment[] fragmentslist = {null,null,null};
         final int PAGE_COUNT = 3;
 
         public FPagerAdapter(FragmentManager fm)
@@ -90,21 +84,20 @@ public class HomeActivity extends FragmentActivity  {
 
         @Override public Fragment getItem(int position)
         {
-            if ((position == 0) && (fragmentslist[position] == null))
+            if ((position == 0))
             {
-                //fragmentslist[position] = new ShowNotesFragment();
-                fragmentslist[position] =  new JourneysListFragment();  //testing
+                return  new FragmentJourneysList();
             }
-            else if ((position == 1) && (fragmentslist[position] == null))
+            else if ((position == 1))
             {
-                fragmentslist[position] =  new JourneysListFragment();
+                return new FragmentJourneysList();
             }
-            else if ((position == 2) && (fragmentslist[position] == null))
+            else if ((position == 2))
             {
-                fragmentslist[position] = new ContactsFragment();
+                return new FragmentJourneysList();
             }
 
-            return fragmentslist[position];
+            return null;
         }
     }
 }

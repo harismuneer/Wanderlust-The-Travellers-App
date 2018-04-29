@@ -17,53 +17,52 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-        <activity android:name=".SplashScreenAcitivity"
+        <activity
+            android:name=".AcitivitySplashScreen"
             android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".ActivityRegisterPhoneNumber"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="wanderlust.com"
+                    android:pathPrefix="/message"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityVerifyPhoneNumber"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".ActivitySetProfileData" />
+
+        <activity android:name=".ActivityExtra" >
+        </activity>
+
+        <activity android:name=".ActivityCreateJourney" />
+        <activity android:name=".ActivityShowJourney" />
+        <activity
+            android:name=".ActivityUserDetails"
+            android:theme="@style/AppTheme3" />
+
+        <activity
+            android:name=".ActivityHome"
+            android:label="@string/title_activity_home" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-        <activity
-            android:name=".RegisterPhoneNumberActivity"
-            android:windowSoftInputMode="stateAlwaysHidden">
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data
-                    android:host="wanderlust.com"
-                    android:scheme="http"
-                    android:pathPrefix="/message"
-                    />
-            </intent-filter>
 
         </activity>
 
-        <activity
-            android:name=".VerifyPhoneNumberActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity android:name=".SetProfileDataActivity" />
-
-        <activity android:name=".ExtraActivity" />
-        <activity android:name=".CreateJourneyActivity" />
-        <activity android:name=".ShowJourneyActivity" />
-
-        <activity
-            android:name=".UserDetailsActivity"
-            android:theme="@style/AppTheme3" />
-
-        <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home" />
-
-        <!--FCM -->
+        <!-- FCM -->
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -85,8 +84,9 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-        <!-- -->
+        <!--  -->
 
+        <activity android:name=".ActivityVoice"></activity>
     </application>
 
 </manifest>

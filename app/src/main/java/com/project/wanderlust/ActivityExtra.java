@@ -2,7 +2,6 @@ package com.project.wanderlust;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -10,13 +9,18 @@ import android.widget.Toast;
 import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-public class ExtraActivity extends AppCompatActivity {
+
+public class ActivityExtra extends ActionBarMenu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extra);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
+
 
     public void invite(View view) {
             //making invite request
@@ -38,7 +42,7 @@ public class ExtraActivity extends AppCompatActivity {
             {
                 Bundle payload = new Bundle();
                 payload.putString(FirebaseAnalytics.Param.VALUE, "sent");
-                RegisterPhoneNumberActivity.mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
+                ActivityRegisterPhoneNumber.mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
                         payload);
 
                 Toast.makeText(this, "Inivitation successfully sent!", Toast.LENGTH_SHORT).show();
@@ -49,7 +53,7 @@ public class ExtraActivity extends AppCompatActivity {
 
                 Bundle payload = new Bundle();
                 payload.putString(FirebaseAnalytics.Param.VALUE, "not sent");
-                RegisterPhoneNumberActivity.mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
+                ActivityRegisterPhoneNumber.mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
                         payload);
 
                 Toast.makeText(this, "Some error occurred while sending invitations..", Toast.LENGTH_SHORT).show();

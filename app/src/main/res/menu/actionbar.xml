@@ -15,4 +15,11 @@
         android:icon="@android:drawable/ic_menu_share"
         android:title="@string/action_invitelink"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/voice"
+        android:icon="@drawable/mike"
+        android:title="@string/action_voice"
+        app:showAsAction="ifRoom" />
+
 </menu>

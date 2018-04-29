@@ -1,5 +1,6 @@
 package com.project.wanderlust;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -23,21 +24,23 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-public class VerifyPhoneNumberActivity extends AppCompatActivity {
+public class ActivityVerifyPhoneNumber extends AppCompatActivity
+{
     FirebaseAuth mAuth;
     private static String code = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_phone_number);
         mAuth = FirebaseAuth.getInstance();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-
 
         Intent intent = getIntent();
         final String string = (String) intent.getSerializableExtra("phone");
@@ -48,7 +51,6 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
         phone.setText(string + ". ");
 
         //text change listener on text field for 6 digit code
-        //called whenever user type
         EditText text = findViewById(R.id.code);
         text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -64,25 +66,40 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(code, s.toString());
 
                         //signing in user to firebase if code was correct otherwise showing error message
-                        mAuth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        mAuth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>()
+                        {
                             @Override
                             public void onSuccess(AuthResult authResult) {
-                                Intent intent = new Intent(VerifyPhoneNumberActivity.this, SetProfileDataActivity.class);
-                                intent.putExtra("phone", string);
-                                startActivity(intent);
-                                finish();
+
+                                //If the user has already saved his profile picture and name, then don't do it again
+                                ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
+                                File file = wrapper.getDir("profilePictures",MODE_PRIVATE);
+
+                                file = new File(file, FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber() + ".jpg");
+
+                                if (!file.exists()) {
+                                    Intent intent = new Intent(ActivityVerifyPhoneNumber.this, ActivitySetProfileData.class);
+                                    intent.putExtra("phone", string);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                                else
+                                {
+                                    startActivity(new Intent(getApplicationContext(), ActivityHome.class));
+                                    finish();
+                                }
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(VerifyPhoneNumberActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ActivityVerifyPhoneNumber.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                     catch (Exception e)
                     {
                         Crashlytics.logException(e);
-                        Toast.makeText(VerifyPhoneNumberActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityVerifyPhoneNumber.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -94,11 +111,11 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(PhoneAuthCredential credential) {
-                        mAuth.signInWithCredential(credential).addOnCompleteListener(VerifyPhoneNumberActivity.this,
+                        mAuth.signInWithCredential(credential).addOnCompleteListener(ActivityVerifyPhoneNumber.this,
                                 new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
-                                        Intent intent = new Intent(VerifyPhoneNumberActivity.this, SetProfileDataActivity.class);
+                                        Intent intent = new Intent(ActivityVerifyPhoneNumber.this, ActivitySetProfileData.class);
                                         intent.putExtra("phone", string);
                                         startActivity(intent);
                                         finish();
@@ -107,7 +124,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onVerificationFailed(FirebaseException e) { Toast.makeText(VerifyPhoneNumberActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show(); }
+                    public void onVerificationFailed(FirebaseException e) { Toast.makeText(ActivityVerifyPhoneNumber.this, e.getMessage(), Toast.LENGTH_SHORT).show(); }
 
                     @Override
                     public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {

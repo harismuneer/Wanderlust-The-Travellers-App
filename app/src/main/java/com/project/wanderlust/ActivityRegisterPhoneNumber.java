@@ -8,10 +8,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,16 +16,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class RegisterPhoneNumberActivity extends AppCompatActivity {
+public class ActivityRegisterPhoneNumber extends AppCompatActivity {
 
     String[] locales;
     FirebaseAuth mAuth;
@@ -37,40 +32,7 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
 
     public static FirebaseAnalytics mFirebaseAnalytics;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actionbar, menu);
-        return true;
-    }
 
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        // Handle item selection
-        switch (item.getItemId())
-        {
-            case R.id.Profile:
-                //start profile activity here
-                startActivity(new Intent(this, SetProfileDataActivity.class));
-                return true;
-
-            case R.id.InviteLink:
-                //start invite link activity here
-                startActivity(new Intent(this, ExtraActivity.class));
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    //when user presses the back arrow in action bar, he is taken to previous activity
-    @Override
-    public boolean onNavigateUp(){
-        onBackPressed();
-        return true;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,67 +40,74 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_phone_number);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.hide();
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
 
         //making firebase persistent
         try {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
             FirebaseDatabase.getInstance().getReference("Users").keepSynced(true);
             FirebaseDatabase.getInstance().getReference("Journeys").keepSynced(true);
-            FirebaseDatabase.getInstance().getReference("inviteLink").keepSynced(true);
         }
-        catch (Exception ex) {}
+        catch (Exception ex)
+        {
+            Crashlytics.logException(ex);
+        }
 
-        //FirebaseDatabase.getInstance().getReference("inviteLink").setValue("abc");
 
         //asking for permissions
         String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION};
         if(!SharedFunctions.hasPermissions(getApplicationContext(), permissions)) {
             ActivityCompat.requestPermissions(this, permissions, 1);
         }
-        else doAfterPermissions();
+
+        doAfterPermissions();
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 1:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) doAfterPermissions();
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    doAfterPermissions();
                 else
                 {
                     Bundle params = new Bundle();
                     params.putBoolean("is_given", false);
                     mFirebaseAnalytics.logEvent("permissions_given", params);
 
+                    //Close App
+                    Toast.makeText(getApplicationContext(), "Permissions not given. Closing App..", Toast.LENGTH_SHORT).show();
                     finish();
                 }
         }
     }
 
-    private void doAfterPermissions() {
+
+    private void doAfterPermissions()
+    {
 
         //logging an event that how many users give permissions and how many don't
-
         Bundle params = new Bundle();
         params.putBoolean("is_given", true);
         mFirebaseAnalytics.logEvent("permissions_given", params);
 
         //checking if user already signed in
         mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this, HomeActivity.class));
+        if(mAuth.getCurrentUser() != null)
+        {
+            startActivity(new Intent(this, ActivityHome.class));
+            finish();
         }
-
-        createCountryDropDownMenu();
+        else
+            createCountryDropDownMenu();
     }
 
-
-    private void createCountryDropDownMenu() {
-        countries= getCountryNames();
+    private void createCountryDropDownMenu()
+    {
+        countries = getCountryNames();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, countries);
 
         Spinner countrySpinner = findViewById(R.id.country);
@@ -182,7 +151,26 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
         });
     }
 
-    public void nextButton(View view) {
+
+    // returns an arraylist containing country names
+    public ArrayList<String> getCountryNames()
+    {
+        //Getting country ISOs
+        locales = Locale.getISOCountries();
+        ArrayList<String> countries = new ArrayList<>();
+
+        //getting country names
+        for (String countryCode : locales) {
+            Locale obj = new Locale("", countryCode);
+            countries.add(obj.getDisplayCountry());
+        }
+
+        return countries;
+    }
+
+
+    public void nextButton(View view)
+    {
         TextView editText1 = findViewById(R.id.countryCode);
         EditText editText2 = findViewById(R.id.phone);
 
@@ -195,24 +183,9 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
 
             return;
         }
-        Intent intent = new Intent(this, VerifyPhoneNumberActivity.class);
+
+        Intent intent = new Intent(this, ActivityVerifyPhoneNumber.class);
         intent.putExtra("phone", editText1.getText().toString() + editText2.getText().toString());
         startActivity(intent);
-    }
-
-
-    // returns an arraylist containing country names
-    public ArrayList<String> getCountryNames() {
-
-        //Getting country ISOs
-        locales = Locale.getISOCountries();
-        ArrayList<String> countries = new ArrayList<>();
-
-        //getting country names
-        for (String countryCode : locales) {
-            Locale obj = new Locale("", countryCode);
-            countries.add(obj.getDisplayCountry());
-        }
-        return countries;
     }
 }

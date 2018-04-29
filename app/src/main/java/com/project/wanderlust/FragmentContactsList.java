@@ -1,5 +1,6 @@
 package com.project.wanderlust;
 
+import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -34,50 +35,67 @@ import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class ContactsFragment extends Fragment implements RecyclerView.OnItemTouchListener{
-    GestureDetector gestureDetector;
+public class FragmentContactsList extends Fragment implements RecyclerView.OnItemTouchListener
+{
     Context c;
+
+    static ArrayList<Contact> contactslist = new ArrayList<>();
+    AdapterContactsList adapter;
+
     RecyclerView rv;
-    final static ArrayList<Contact> contactslist = new ArrayList<>();
-    ContactAdapter adapter;
+    GestureDetector gestureDetector;
+
+    ProgressDialog dialog;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View rootView = inflater.inflate(R.layout.fragment_contacts, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_contacts_list, container, false);
 
         return rootView;
     }
 
-
     @Override
-    public void onStart() {
-        super.onStart();
+    public  void onActivityCreated(Bundle b)
+    {
+        super.onActivityCreated(b);
 
         c = getContext();
 
+        //-----------RECYCLER VIEW CODE-----------------//
         rv = getView().findViewById(R.id.contactRecyclerView);
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv.addOnItemTouchListener(this);
+        rv.setItemAnimator(new DefaultItemAnimator());
 
-        gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener()
+        gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener()
         {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
+
                 View child = rv.findChildViewUnder(e.getX(), e.getY());
                 if(child != null)
                 {
-                    int position = rv.getChildAdapterPosition(child);
-                    Intent intent = new Intent(c, UserDetailsActivity.class);
-                    intent.putExtra("phoneNumber", contactslist.get(position).getPhone());
+                    Contact j = contactslist.get(rv.getChildAdapterPosition(child));
+
+                    Intent intent = new Intent(c, ActivityUserDetails.class);
+                    intent.putExtra("phoneNumber", j.getPhone());
                     startActivity(intent);
                 }
+
                 return true;
             }
-        });
+        }
+        );
+        //---------------------------------------------//
+
+        dialog = ProgressDialog.show(c, "Please wait", "Loading Contacts...", true);
 
         loadContactsFromPhone();
     }
 
-    //Kindly add some comments for this function that what is it doing in each line
+
+
     private void loadContactsFromPhone() {
         final ArrayList<String> names = new ArrayList<>();
         final ArrayList<String> phones = new ArrayList<>();
@@ -111,37 +129,47 @@ public class ContactsFragment extends Fragment implements RecyclerView.OnItemTou
         final Context context = getContext();
         contactslist.clear();
 
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users");
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int i;
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
                 ContextWrapper wrapper = new ContextWrapper(context);
                 File file = wrapper.getDir("profilePictures", MODE_PRIVATE);
                 StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("profilePictures");
+
                 //going through all users present in firebase
                 for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                    String number = ds.getKey();
-                    String status = ds.child("status").getValue(String.class);
+                     final String number = ds.getKey();
+
                     //checking if obtaining user is not logged in user or phone contact
-                    if(!number.equals(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()) && phones.contains(number)) {
-                        if((i = phones.indexOf(number)) != -1) {
+                    if(!number.equals(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()) && phones.contains(number))
+                    {
+                        final int i;
+                        if((i = phones.indexOf(number)) != -1)
+                        {
                             final File file1 = new File(file, number + ".jpg");
+
                             //user profile pic is present in phone
                             if(file1.exists()) {
                                 final Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(file1, 100, 100);
-                                contactslist.add(new Contact(bitmap, names.get(i), status, number));
+                                contactslist.add(new Contact(bitmap, names.get(i), number));
                             }
-                            else {
+                            else
+                            {
                                 final StorageReference reference = storageRef.child(number + ".jpg");
                                 reference.getFile(file1).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                                    @Override public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) { }
+                                    @Override public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                        final Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(file1, 100, 100);
+                                        contactslist.add(new Contact(bitmap, names.get(i), number));
+                                    }
                                 });
-                                contactslist.add(new Contact(null, names.get(i), status, number));
                             }
                         }
                     }
                 }
+
+                dialog.dismiss();
                 viewFriends();
             }
 
@@ -150,10 +178,7 @@ public class ContactsFragment extends Fragment implements RecyclerView.OnItemTou
     }
 
     private void viewFriends() {
-        adapter = new ContactAdapter(contactslist, R.layout.contact_cell);
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.addOnItemTouchListener(this);
-        rv.setItemAnimator(new DefaultItemAnimator());
+        adapter = new AdapterContactsList(contactslist, R.layout.contact_cell);
         rv.setAdapter(adapter);
     }
 
