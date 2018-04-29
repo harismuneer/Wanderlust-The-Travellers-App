@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Activities;
 
 import android.content.ClipData;
 import android.content.Intent;
@@ -18,6 +18,12 @@ import com.google.firebase.appindexing.builders.Indexables;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.project.wanderlust.Adapters.SelectedPicturesAdapter;
+import com.project.wanderlust.Fragments.FragmentJourneysList;
+import com.project.wanderlust.DataClasses.JourneyMini;
+import com.project.wanderlust.R;
+import com.project.wanderlust.Others.SaveImages;
+import com.project.wanderlust.Others.SharedFunctions;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

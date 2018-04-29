@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Activities;
 
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.project.wanderlust.R;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;

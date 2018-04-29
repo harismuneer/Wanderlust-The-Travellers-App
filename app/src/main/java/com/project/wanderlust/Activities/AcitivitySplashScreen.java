@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Activities;
 
 
 import android.content.Intent;
@@ -14,6 +14,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.project.wanderlust.R;
 
 public class AcitivitySplashScreen extends AppCompatActivity {
 

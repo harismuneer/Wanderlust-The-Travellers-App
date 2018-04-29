@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.project.wanderlust.R;
+import com.project.wanderlust.Sensors.CompassActivity;
+import com.project.wanderlust.Sensors.StepCountActivity;
 
 /**
  * Created by PAKLAP.pk on 29-Apr-18.
@@ -52,6 +55,18 @@ public class ActionBarMenu extends AppCompatActivity {
             case android.R.id.home:
             {
                 onBackPressed();
+                return true;
+            }
+            case R.id.Compass:
+            {
+                startActivity(new Intent(this, CompassActivity.class));
+
+                return true;
+            }
+            case R.id.StepCount:
+            {
+                startActivity(new Intent(this, StepCountActivity.class));
+
                 return true;
             }
 

@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Activities;
 
 import android.app.ProgressDialog;
 import android.content.ContextWrapper;
@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.project.wanderlust.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

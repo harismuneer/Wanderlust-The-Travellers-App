@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Adapters;
 
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.project.wanderlust.DataClasses.JourneyMini;
+import com.project.wanderlust.R;
+import com.project.wanderlust.Others.SharedFunctions;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AdapterJourneyList extends RecyclerView.Adapter<AdapterJourneyList.ViewHolderJourney>
 {

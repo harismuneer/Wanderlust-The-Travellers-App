@@ -22,4 +22,17 @@
         android:title="@string/action_voice"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/Compass"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="@string/action_compass"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/StepCount"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="@string/action_step"
+        app:showAsAction="never" />
+
+
 </menu>

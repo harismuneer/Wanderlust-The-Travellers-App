@@ -16,14 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name=".AcitivitySplashScreen"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:name=".Activities.AcitivitySplashScreen"
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".ActivityRegisterPhoneNumber"
+            android:name=".Activities.ActivityRegisterPhoneNumber"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -38,40 +35,38 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityVerifyPhoneNumber"
+            android:name=".Activities.ActivityVerifyPhoneNumber"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".ActivitySetProfileData" />
-
-        <activity android:name=".ActivityExtra" >
-        </activity>
-
-        <activity android:name=".ActivityCreateJourney" />
-        <activity android:name=".ActivityShowJourney" />
+        <activity android:name=".Activities.ActivitySetProfileData" />
+        <activity android:name=".Activities.ActivityExtra"></activity>
+        <activity android:name=".Activities.ActivityCreateJourney" />
+        <activity android:name=".Activities.ActivityShowJourney" />
         <activity
-            android:name=".ActivityUserDetails"
+            android:name=".Activities.ActivityUserDetails"
             android:theme="@style/AppTheme3" />
-
         <activity
-            android:name=".ActivityHome"
-            android:label="@string/title_activity_home" >
+            android:name=".Activities.ActivityHome"
+            android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
+
+
 
         <!-- FCM -->
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".Others.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".MyFirebaseInstanceIdService"
+            android:name=".Others.MyFirebaseInstanceIdService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -86,7 +81,10 @@
             android:resource="@color/colorAccent" />
         <!--  -->
 
-        <activity android:name=".ActivityVoice"></activity>
+        <activity android:name=".Activities.ActivityVoice" />
+        <activity android:name=".Sensors.CompassActivity"></activity>
+        <activity android:name=".Sensors.StepCountActivity"></activity>
+
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.project.wanderlust.DataClasses.Contact;
+import com.project.wanderlust.R;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
+import com.project.wanderlust.Fragments.FragmentJourneysList;
+import com.project.wanderlust.R;
 
 
 public class ActivityHome extends ActionBarMenu {

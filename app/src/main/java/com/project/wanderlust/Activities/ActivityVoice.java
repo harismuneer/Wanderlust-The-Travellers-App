@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Activities;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -6,6 +6,8 @@ import android.speech.RecognizerIntent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import com.project.wanderlust.R;
 
 import java.util.ArrayList;
 import java.util.List;

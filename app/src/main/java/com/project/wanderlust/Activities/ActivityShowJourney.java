@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Activities;
 
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.project.wanderlust.Adapters.AdapterShowImages;
+import com.project.wanderlust.R;
 
 import java.io.File;
 import java.text.ParseException;

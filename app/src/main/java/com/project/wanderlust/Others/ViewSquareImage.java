@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Others;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;

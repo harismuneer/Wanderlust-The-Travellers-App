@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -20,6 +20,8 @@ import com.crashlytics.android.Crashlytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.project.wanderlust.R;
+import com.project.wanderlust.Others.SharedFunctions;
 
 import java.util.ArrayList;
 import java.util.Locale;

@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Fragments;
 
 import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
@@ -29,6 +29,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.project.wanderlust.Activities.ActivityUserDetails;
+import com.project.wanderlust.Adapters.AdapterContactsList;
+import com.project.wanderlust.DataClasses.Contact;
+import com.project.wanderlust.R;
+import com.project.wanderlust.Others.SharedFunctions;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,7 +44,7 @@ public class FragmentContactsList extends Fragment implements RecyclerView.OnIte
 {
     Context c;
 
-    static ArrayList<Contact> contactslist = new ArrayList<>();
+    public static ArrayList<Contact> contactslist = new ArrayList<>();
     AdapterContactsList adapter;
 
     RecyclerView rv;

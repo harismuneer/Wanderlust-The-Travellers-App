@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.Fragments;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +25,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.project.wanderlust.Activities.ActivityCreateJourney;
+import com.project.wanderlust.Activities.ActivityShowJourney;
+import com.project.wanderlust.Adapters.AdapterJourneyList;
+import com.project.wanderlust.DataClasses.JourneyMini;
+import com.project.wanderlust.R;
+import com.project.wanderlust.Others.SharedFunctions;
 
 import java.io.File;
 import java.text.ParseException;
@@ -39,8 +45,8 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
 {
     GestureDetector gestureDetector;
     RecyclerView rv;
-    static ArrayList<JourneyMini> journeys;
-    static AdapterJourneyList adapter;
+    public static ArrayList<JourneyMini> journeys;
+    public static AdapterJourneyList adapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

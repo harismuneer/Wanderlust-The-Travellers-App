@@ -1,4 +1,4 @@
-package com.project.wanderlust;
+package com.project.wanderlust.DataClasses;
 
 import android.graphics.Bitmap;
 
