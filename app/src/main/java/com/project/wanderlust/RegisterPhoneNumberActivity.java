@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -28,16 +33,56 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
 
     String[] locales;
     FirebaseAuth mAuth;
+    ArrayList<String> countries;
+
+    public static FirebaseAnalytics mFirebaseAnalytics;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        // Handle item selection
+        switch (item.getItemId())
+        {
+            case R.id.Profile:
+                //start profile activity here
+                startActivity(new Intent(this, SetProfileDataActivity.class));
+                return true;
+
+            case R.id.InviteLink:
+                //start invite link activity here
+                startActivity(new Intent(this, ExtraActivity.class));
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    //when user presses the back arrow in action bar, he is taken to previous activity
+    @Override
+    public boolean onNavigateUp(){
+        onBackPressed();
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_phone_number);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.hide();
 
-        String t = FirebaseInstanceId.getInstance().getToken();
-        Log.d("HARIS MUNEER", "FCM TOKEN: " + t);
-        FirebaseMessaging.getInstance().subscribeToTopic("friendly_engage");
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
 
         //making firebase persistent
         try {
@@ -63,11 +108,25 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) doAfterPermissions();
-                else finish();
+                else
+                {
+                    Bundle params = new Bundle();
+                    params.putBoolean("is_given", false);
+                    mFirebaseAnalytics.logEvent("permissions_given", params);
+
+                    finish();
+                }
         }
     }
 
     private void doAfterPermissions() {
+
+        //logging an event that how many users give permissions and how many don't
+
+        Bundle params = new Bundle();
+        params.putBoolean("is_given", true);
+        mFirebaseAnalytics.logEvent("permissions_given", params);
+
         //checking if user already signed in
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null) {
@@ -79,7 +138,7 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
 
 
     private void createCountryDropDownMenu() {
-        ArrayList<String> countries= getCountryNames();
+        countries= getCountryNames();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, countries);
 
         Spinner countrySpinner = findViewById(R.id.country);
@@ -105,6 +164,12 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
                     if(g[1].trim().equals(CountryID.trim())){
                         TextView textView = findViewById(R.id.countryCode);
                         textView.setText("+" + g[0]);
+
+                        //foreign users
+                        Bundle params = new Bundle();
+                        params.putString("country", countries.get(position));
+                        mFirebaseAnalytics.logEvent("countries", params);
+
                         return;
                     }
                 }
@@ -123,6 +188,11 @@ public class RegisterPhoneNumberActivity extends AppCompatActivity {
 
         if (editText2.getText().length() == 0) {
             Toast.makeText(this, "Phone number required.", Toast.LENGTH_SHORT).show();
+
+            Bundle params = new Bundle();
+            params.putBoolean("error_made", true);
+            mFirebaseAnalytics.logEvent("leaving_phone_number", params);
+
             return;
         }
         Intent intent = new Intent(this, VerifyPhoneNumberActivity.class);

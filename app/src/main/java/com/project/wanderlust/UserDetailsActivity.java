@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,10 +20,24 @@ import java.io.File;
 
 public class UserDetailsActivity extends AppCompatActivity {
 
+    private AdView mAdView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
+
+        //Google Admob
+        try {
+            mAdView = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
+        catch (Exception e)
+        {
+            Crashlytics.logException(e);
+        }
 
         Intent intent = getIntent();
         String phone = (String) intent.getSerializableExtra("phoneNumber");
@@ -54,5 +71,36 @@ public class UserDetailsActivity extends AppCompatActivity {
             ((ImageView) findViewById(R.id.photo)).setImageBitmap(bitmap);
         }
         ((TextView) findViewById(R.id.friends)).setText(Integer.toString(ContactsFragment.contactslist.size()));
+    }
+
+
+
+
+
+    //For Admob
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    /** Called when returning to the activity */
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    /** Called before the activity is destroyed */
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
     }
 }

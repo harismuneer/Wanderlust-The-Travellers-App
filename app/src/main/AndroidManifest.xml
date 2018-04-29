@@ -17,30 +17,53 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".RegisterPhoneNumberActivity"
-            android:windowSoftInputMode="stateAlwaysHidden">
+
+        <activity android:name=".SplashScreenAcitivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".RegisterPhoneNumberActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="wanderlust.com"
+                    android:scheme="http"
+                    android:pathPrefix="/message"
+                    />
+            </intent-filter>
+
+        </activity>
+
         <activity
             android:name=".VerifyPhoneNumberActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity android:name=".SetProfileDataActivity" />
+
         <activity android:name=".ExtraActivity" />
         <activity android:name=".CreateJourneyActivity" />
         <activity android:name=".ShowJourneyActivity" />
+
         <activity
             android:name=".UserDetailsActivity"
             android:theme="@style/AppTheme3" />
+
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />
 
-
+        <!--FCM -->
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -48,7 +71,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".MyFirebaseInstanceIdService"
             android:exported="false">
@@ -57,20 +79,14 @@
             </intent-filter>
         </service>
 
-        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-     See README(https://goo.gl/l4GJaQ) for more. -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_notifications_black_24dp" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+            android:resource="@color/colorAccent" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-
+        <!-- -->
 
     </application>
-
-
 
 </manifest>

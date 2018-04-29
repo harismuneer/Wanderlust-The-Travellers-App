@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.google.firebase.appindexing.FirebaseAppIndex;
+import com.google.firebase.appindexing.Indexable;
+import com.google.firebase.appindexing.builders.Indexables;
+import com.google.firebase.appindexing.builders.PersonBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -118,6 +122,17 @@ public class CreateJourneyActivity extends AppCompatActivity {
         map.put(TITLE, t);
         map.put(DESCRIPTION, d);
         mReference.child(time).setValue(map);
+
+        //Index Journeys
+        Indexable journeyToIndex = Indexables.noteDigitalDocumentBuilder()
+                .setName(t)
+                .setText(d)
+                .setUrl("http://www.wanderlust.com/message/" + t)
+                .build();
+
+        FirebaseAppIndex.getInstance()
+                .update(journeyToIndex);
+
 
         Toast.makeText(this, "Journey Created Successfully!", Toast.LENGTH_LONG).show();
 

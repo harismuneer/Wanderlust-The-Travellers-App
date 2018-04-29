@@ -43,54 +43,12 @@ public class HomeActivity extends FragmentActivity  {
         }
     };
 
-    @Override
-    public void onBackPressed() {
-        finishAffinity();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actionbar, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        // Handle item selection
-        switch (item.getItemId())
-        {
-            case R.id.Profile:
-                //start profile activity here
-                startActivity(new Intent(this, SetProfileDataActivity.class));
-                return true;
-
-            case R.id.InviteLink:
-                //start invite link activity here
-                startActivity(new Intent(this, ExtraActivity.class));
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    //when user presses the back arrow in action bar, he is taken to previous activity
-    @Override
-    public boolean onNavigateUp(){
-        onBackPressed();
-        return true;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        ActionBar actionBar = getActionBar();
-        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         bottombar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottombar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

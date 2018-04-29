@@ -111,6 +111,9 @@ public class SetProfileDataActivity extends AppCompatActivity {
                         }catch (Exception ex) {}
                     }
                     Map<String, String> map = new HashMap<>();
+
+                    RegisterPhoneNumberActivity.mFirebaseAnalytics.setUserProperty("user_name", nam);
+
                     map.put("name", nam);
                     map.put("status", "Available");
                     DatabaseReference reference1 = mDatabase.child("users").child(phone);

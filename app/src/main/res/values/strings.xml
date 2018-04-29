@@ -255,6 +255,6 @@
     <string name="title_friends">Friends</string>
 
     <string name="action_profile">Profile</string>
-    <string name="action_invitelink">Invite</string>
+    <string name="action_invitelink">Share</string>
 
 </resources>
