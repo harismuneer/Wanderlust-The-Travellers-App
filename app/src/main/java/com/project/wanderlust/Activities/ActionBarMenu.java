@@ -59,7 +59,7 @@ public class ActionBarMenu extends AppCompatActivity {
             }
             case android.R.id.home:
             {
-                onBackPressed();
+                finish();
                 return true;
             }
             case R.id.Compass:
@@ -84,4 +84,10 @@ public class ActionBarMenu extends AppCompatActivity {
         }
     }
     //-----------------------------------------------------------------------//
+
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+    }
 }

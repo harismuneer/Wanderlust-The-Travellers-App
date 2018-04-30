@@ -51,7 +51,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)  //a resource for your custom small icon
                 .setContentTitle(title) //the "title" value you sent in your notification
                 .setContentText(message) //ditto
-                .setAutoCancel(true)  //dismisses the notification on click
+                .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setStyle(new NotificationCompat.BigTextStyle()
                 .bigText(message));

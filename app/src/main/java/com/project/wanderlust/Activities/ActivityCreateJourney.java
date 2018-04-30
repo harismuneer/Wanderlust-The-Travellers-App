@@ -90,7 +90,7 @@ public class ActivityCreateJourney extends ActionBarMenu
             }
             else if (requestCode == GALLERY)
             {
-                if(photos.size() < 10)
+                if(photos.size() < 4)
                 {
                     if (data.getClipData() != null)
                     {
@@ -112,7 +112,7 @@ public class ActivityCreateJourney extends ActionBarMenu
                         adapter.notifyDataSetChanged();
                     }
                 }
-                else Toast.makeText(this, "Cannot add more than 10 pictures", Toast.LENGTH_LONG).show();
+                else Toast.makeText(this, "Cannot add more than 3 pictures.", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -156,17 +156,6 @@ public class ActivityCreateJourney extends ActionBarMenu
         map.put(DESCRIPTION, d);
         mReference.child(time).setValue(map);
 
-        //-------------------------------------------
-        //Index Journey
-        Indexable journeyToIndex = Indexables.noteDigitalDocumentBuilder()
-                .setName(t)
-                .setText(d)
-                .setUrl("http://www.wanderlust.com/message/" + t)
-                .build();
-
-        FirebaseAppIndex.getInstance()
-                .update(journeyToIndex);
-        //-------------------------------------------
 
         Bitmap p = null;
 

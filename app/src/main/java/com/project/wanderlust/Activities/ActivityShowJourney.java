@@ -1,8 +1,13 @@
 package com.project.wanderlust.Activities;
 
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
@@ -20,6 +25,8 @@ import com.project.wanderlust.Adapters.AdapterShowImages;
 import com.project.wanderlust.R;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,6 +69,8 @@ public class ActivityShowJourney extends ActionBarMenu implements  TextToSpeech.
         final TextView dateView = findViewById(R.id.date1);
         final GridView photoGrid = findViewById(R.id.photo1);
 
+        new showImages(photoGrid, timestamp).execute();
+
         //Get that particular journey
         FirebaseDatabase.getInstance().getReference("Journeys").child(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()).child(timestamp)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -91,30 +100,61 @@ public class ActivityShowJourney extends ActionBarMenu implements  TextToSpeech.
 
                     }
                 });
+    }
 
-        //get photos from local storage and show
-        final ArrayList<Uri> photos = new ArrayList<>();
-        ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
-        File file = wrapper.getDir(timestamp,MODE_PRIVATE);
-        if (file.isDirectory()) {
-            String[] images = file.list();
-            for(String image : images) {
-                photos.add(Uri.parse(new File(file, image).getAbsolutePath()));
+
+    //-----------ASYNC TASK TO SAVE IMAGES------------------//
+    class showImages extends AsyncTask<Void, Integer, Void>
+    {
+        GridView photoGrid;
+        String timestamp;
+
+        showImages(GridView g, String t)
+        {
+            this.photoGrid = g;
+            this.timestamp = t;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            //get photos from local storage and show
+            final ArrayList<Uri> photos = new ArrayList<>();
+            ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
+            File file = wrapper.getDir(timestamp,MODE_PRIVATE);
+            if (file.isDirectory())
+            {
+                String[] images = file.list();
+                for(String image : images) {
+                    photos.add(Uri.parse(new File(file, image).getAbsolutePath()));
+                }
+
+                adapter = new AdapterShowImages(getApplicationContext(), photos);
+                photoGrid.setAdapter(adapter);
+
+                if(photos.size() != 0) {
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Pics Loaded Successfully.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
 
-            adapter = new AdapterShowImages(this, photos);
-            photoGrid.setAdapter(adapter);
-        }
+            if (photos.size() == 0)
+            {
+                TextView t1 = findViewById(R.id.description3);
+                GridView v1 = findViewById(R.id.photo1);
 
-        if (photos.size() == 0)
-        {
-            TextView t1 = findViewById(R.id.description3);
-            GridView v1 = findViewById(R.id.photo1);
+                t1.setVisibility(View.GONE);
+                v1.setVisibility(View.GONE);
+            }
 
-            t1.setVisibility(View.GONE);
-            v1.setVisibility(View.GONE);
+            return null;
         }
     }
+
 
     //---------------------------------------------------------------------------------//
     //-----------------------------TEXT TO SPEECH CODE---------------------------------//

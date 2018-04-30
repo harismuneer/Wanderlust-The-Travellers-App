@@ -10,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.project.wanderlust.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 
 public class AdapterShowImages extends ArrayAdapter<Uri>
@@ -43,7 +46,16 @@ public class AdapterShowImages extends ArrayAdapter<Uri>
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if(convertView == null)
             convertView = inflater.inflate(R.layout.image, null);
-        ((ImageView) convertView).setImageURI(getItem(position));
+
+        try {
+            ((ImageView) convertView).setImageURI(getItem(position));
+        }
+        catch (Exception e)
+        {
+            Crashlytics.logException(e);
+            Toast.makeText(getContext(), "Error in show image adapter.", Toast.LENGTH_SHORT).show();
+        }
+
         return convertView;
     }
 }
