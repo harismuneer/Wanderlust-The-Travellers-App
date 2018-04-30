@@ -105,6 +105,15 @@ public class ActivityShowJourney extends ActionBarMenu implements  TextToSpeech.
             adapter = new AdapterShowImages(this, photos);
             photoGrid.setAdapter(adapter);
         }
+
+        if (photos.size() == 0)
+        {
+            TextView t1 = findViewById(R.id.description3);
+            GridView v1 = findViewById(R.id.photo1);
+
+            t1.setVisibility(View.GONE);
+            v1.setVisibility(View.GONE);
+        }
     }
 
     //---------------------------------------------------------------------------------//
@@ -140,16 +149,19 @@ public class ActivityShowJourney extends ActionBarMenu implements  TextToSpeech.
         String title = titleView.getText().toString();
         String description = descriptionView.getText().toString();
 
-        tts.speak("The title of journey is ", TextToSpeech.QUEUE_FLUSH, null);
-        tts.speak(title, TextToSpeech.QUEUE_FLUSH, null);
+        float s = (float) 0.8;
 
-        tts.speak("Description ", TextToSpeech.QUEUE_FLUSH, null);
+        tts.setSpeechRate(s);
+        tts.speak("The title of journey is ", TextToSpeech.QUEUE_FLUSH, null);
+        tts.speak(title, TextToSpeech.QUEUE_ADD, null);
+
+        tts.speak("Description ", TextToSpeech.QUEUE_ADD, null);
         if (description == "")
         {
-            tts.speak("The journey has no description", TextToSpeech.QUEUE_FLUSH, null);
+            tts.speak("The journey has no description", TextToSpeech.QUEUE_ADD, null);
         }
         else
-            tts.speak(description, TextToSpeech.QUEUE_FLUSH, null);
+            tts.speak(description, TextToSpeech.QUEUE_ADD, null);
     }
 
     @Override

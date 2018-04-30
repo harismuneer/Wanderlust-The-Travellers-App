@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
+import com.project.wanderlust.Fragments.FragmentContactsList;
 import com.project.wanderlust.Fragments.FragmentJourneysList;
 import com.project.wanderlust.R;
 
@@ -86,9 +87,10 @@ public class ActivityHome extends ActionBarMenu {
 
         @Override public Fragment getItem(int position)
         {
+
             if ((position == 0))
             {
-                return  new FragmentJourneysList();
+                return new FragmentJourneysList();
             }
             else if ((position == 1))
             {
@@ -96,7 +98,7 @@ public class ActivityHome extends ActionBarMenu {
             }
             else if ((position == 2))
             {
-                return new FragmentJourneysList();
+                return new FragmentContactsList();
             }
 
             return null;

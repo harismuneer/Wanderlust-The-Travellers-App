@@ -32,9 +32,9 @@
         android:id="@+id/country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignTop="@+id/text"
-        android:layout_marginTop="55dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="81dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"

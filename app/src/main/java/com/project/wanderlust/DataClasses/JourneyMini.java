@@ -1,5 +1,6 @@
 package com.project.wanderlust.DataClasses;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 import java.util.Date;
@@ -9,9 +10,9 @@ public class JourneyMini {
     public Date date;
     public String location;
     public String broaderLoocation;
-    public Uri bitmap;
+    public Bitmap bitmap;
 
-    public JourneyMini(String title, Date date, String location, String broaderLocation, Uri bitmap) {
+    public JourneyMini(String title, Date date, String location, String broaderLocation, Bitmap bitmap) {
         this.title = title;
         this.date = date;
         this.location = location;

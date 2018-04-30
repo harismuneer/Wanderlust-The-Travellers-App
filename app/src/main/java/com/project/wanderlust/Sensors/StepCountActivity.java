@@ -54,6 +54,7 @@ public class StepCountActivity extends ActionBarMenu implements SensorEventListe
             public void onClick(View arg0) {
 
                 numSteps = 0;
+                TvSteps.setText(TEXT_NUM_STEPS + numSteps);
                 sensorManager.registerListener(StepCountActivity.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
                 BtnStart.setEnabled(false);
                 BtnStop.setEnabled(true);

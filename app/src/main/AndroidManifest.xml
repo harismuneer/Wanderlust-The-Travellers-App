@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"/>
 
     <application
         android:allowBackup="true"
@@ -16,9 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".Activities.AcitivitySplashScreen"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".Activities.ActivityRegisterPhoneNumber"
             android:windowSoftInputMode="stateAlwaysHidden">
@@ -34,27 +43,40 @@
                     android:scheme="http" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Activities.ActivityVerifyPhoneNumber"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity android:name=".Activities.ActivitySetProfileData" />
-        <activity android:name=".Activities.ActivityExtra"></activity>
-        <activity android:name=".Activities.ActivityCreateJourney" />
-        <activity android:name=".Activities.ActivityShowJourney" />
+
+        <activity
+            android:name=".Activities.ActivityExtra"
+            android:label="Invites" />
+
+        <activity android:name=".Activities.ActivityCreateJourney"
+            android:label="Create Journey"
+        />
+
+        <activity android:name=".Activities.ActivityShowJourney"
+            android:label="Show Journey"
+            />
+
         <activity
             android:name=".Activities.ActivityUserDetails"
-            android:theme="@style/AppTheme3" />
+            />
+
         <activity
             android:name=".Activities.ActivityHome"
             android:label="@string/title_activity_home">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
-
+        <activity android:name=".Activities.ActivityVoice"
+            android:label="Voice Commands"/>
+        <activity android:name=".Sensors.CompassActivity"
+            android:label="Compass"></activity>
+        <activity android:name=".Sensors.StepCountActivity"
+            android:label="Pedometer"></activity>
 
 
         <!-- FCM -->
@@ -81,9 +103,6 @@
             android:resource="@color/colorAccent" />
         <!--  -->
 
-        <activity android:name=".Activities.ActivityVoice" />
-        <activity android:name=".Sensors.CompassActivity"></activity>
-        <activity android:name=".Sensors.StepCountActivity"></activity>
 
     </application>
 

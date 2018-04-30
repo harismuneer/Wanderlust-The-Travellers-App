@@ -1,5 +1,9 @@
 package com.project.wanderlust.Fragments;
 
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -33,6 +37,9 @@ import com.project.wanderlust.R;
 import com.project.wanderlust.Others.SharedFunctions;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,7 +53,8 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
     GestureDetector gestureDetector;
     RecyclerView rv;
     public static ArrayList<JourneyMini> journeys;
-    public static AdapterJourneyList adapter;
+    public static AdapterJourneyList adapter = new AdapterJourneyList(null, null, null, R.layout.journey_cell);
+    static Bitmap profilePhoto;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -66,6 +74,7 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.addOnItemTouchListener(this);
         rv.setItemAnimator(new DefaultItemAnimator());
+        rv.setAdapter(adapter);
 
         gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener()
         {
@@ -88,66 +97,15 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
         );
         //---------------------------------------------//
 
-        try {
+        final Context context = getContext();
 
-            final Context context = getContext();
+        //get profile picture to show with every journey
+        ContextWrapper wrapper = new ContextWrapper(context);
+        File file = wrapper.getDir("profilePictures", MODE_PRIVATE);
+        file = new File(file, FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber() + ".jpg");
+        profilePhoto = SharedFunctions.decodeBitmapFromFile(file, 100, 100);
 
-            //get profile picture to show with every journey
-            ContextWrapper wrapper = new ContextWrapper(context);
-            File file = wrapper.getDir("profilePictures", MODE_PRIVATE);
-            file = new File(file, FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber() + ".jpg");
-            final Bitmap profilePhoto = SharedFunctions.decodeBitmapFromFile(file, 100, 100);
-
-
-            FirebaseDatabase.getInstance().getReference("Journeys").child(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber())
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            ContextWrapper wrapper = new ContextWrapper(context);
-                            journeys = new ArrayList<>();
-                            SimpleDateFormat format = new SimpleDateFormat(ActivityCreateJourney.DATE_FORMAT);
-                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                try {
-                                    Date date = format.parse(ds.getKey());
-                                    String title = ds.child(ActivityCreateJourney.TITLE).getValue(String.class);
-                                    File file = wrapper.getDir(ds.getKey(), MODE_PRIVATE);
-                                    Uri photo = null;
-
-                                    //if that journey has a photo then choose one photo from it.
-                                    if (file.isDirectory()) {
-                                        String[] images = file.list();
-                                        if (images.length > 0)
-                                            photo = Uri.parse(new File(file, images[0]).getAbsolutePath());
-                                    }
-
-                                    //Location of Journey par kaam karna abhi
-                                    journeys.add(new JourneyMini(title, date, "Faisal Town", "Lahore", photo));
-                                } catch (ParseException e) {
-                                }
-                            }
-
-                            Collections.reverse(journeys);
-
-                            String phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
-                            String username = FirebaseDatabase.getInstance().getReference("Users").child(phone).child("name").getKey();
-
-                            //--------------------------RECYCLER VIEW CODE--------------------------------//
-                            adapter = new AdapterJourneyList(journeys, profilePhoto, username, R.layout.journey_cell);
-                            rv.setAdapter(adapter);
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                        }
-                    });
-
-        }
-        catch (Exception e)
-        {
-            Crashlytics.logException(e);
-            Toast.makeText(getContext(),"Error Loading Journeys..",Toast.LENGTH_SHORT).show();
-        }
-
+        // FAB Listener
         FloatingActionButton button = (FloatingActionButton) getView().findViewById(R.id.createjourney);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +113,8 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
                 startActivity(new Intent(getContext(), ActivityCreateJourney.class));
             }
         });
+
+        new LoadJourneys().execute();
     }
 
     //-----------------GESTURE DETECTOR METHODS---------------------//
@@ -173,4 +133,94 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
     }
+
+
+
+    //-----------ASYNC TASK TO Load Journeys------------------//
+    class LoadJourneys extends AsyncTask<Void, Integer, Void>
+    {
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            try{
+
+                //Get Journeys From Firebase
+                FirebaseDatabase.getInstance().getReference("Journeys").child(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber())
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                ContextWrapper wrapper = new ContextWrapper(getContext());
+                                journeys = new ArrayList<>();
+                                SimpleDateFormat format = new SimpleDateFormat(ActivityCreateJourney.DATE_FORMAT);
+                                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                    try {
+                                        Date date = format.parse(ds.getKey());
+                                        String title = ds.child(ActivityCreateJourney.TITLE).getValue(String.class);
+                                        File file = wrapper.getDir(ds.getKey(), MODE_PRIVATE);
+                                        Uri photo = null;
+                                        Bitmap photo1 = null;
+
+                                        //if that journey has a photo then choose one photo from it.
+                                        if (file.isDirectory()) {
+                                            String[] images = file.list();
+                                            if (images.length > 0)
+                                            {
+                                                File file1 = new File(file, "0.jpg");
+                                                photo1 = SharedFunctions.decodeBitmapFromFile(file1, 500, 500);
+                                            }
+                                        }
+
+                                        //Location of Journey par kaam karna abhi
+                                        journeys.add(new JourneyMini(title, date, "Faisal Town", "Lahore", photo1));
+                                    } catch (ParseException e) {
+                                    }
+                                }
+
+                                Collections.reverse(journeys);
+
+                                String phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+
+                                //Get Name
+                                FirebaseDatabase.getInstance().getReference("Users").child(phone)
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                String name = dataSnapshot.child("name").getValue(String.class);
+
+                                                //--------------------------RECYCLER VIEW CODE--------------------------------//
+                                                adapter = new AdapterJourneyList(journeys, profilePhoto, name, R.layout.journey_cell);
+                                                rv.setAdapter(adapter);
+                                            }
+                                            @Override public void onCancelled(DatabaseError databaseError) { }
+                                        });
+
+                                Handler handler = new Handler(Looper.getMainLooper());
+                                handler.post(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(getContext(),"Journeys Successfully Loaded..",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                            }
+                        });
+
+            }
+            catch (Exception e)
+            {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getContext(),"Error Loading Journeys..",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            return null;
+        }
+    }
+
 }

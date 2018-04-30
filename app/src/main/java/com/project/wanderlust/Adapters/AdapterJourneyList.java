@@ -53,16 +53,18 @@ public class AdapterJourneyList extends RecyclerView.Adapter<AdapterJourneyList.
 
             ImageView imageView = holder.journeyPic;
 
+            // journey photo
             if(item.bitmap != null)
             {
-                imageView.setImageURI(item.bitmap);
+                imageView.setImageBitmap(item.bitmap);
                 ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
                 layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
                 imageView.setLayoutParams(layoutParams);
+                imageView.setVisibility(View.VISIBLE);
             }
             else
             {
-                imageView.setImageBitmap(null);
+                imageView.setVisibility(View.GONE);
             }
         }
     }

@@ -18,7 +18,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:gravity="center"
-            android:theme="@style/AppTheme"/>
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:theme="@style/AppTheme" />
 
 
         <Button

@@ -16,44 +16,68 @@
             android:id="@+id/title1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="10dp"
-            android:gravity="left"
+            android:layout_margin="10dp"
+            android:background="@drawable/cancel"
+            android:gravity="left|center_vertical|center_horizontal|center"
+            android:padding="5dp"
             android:text="@string/title1"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/description1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="3dp"
-            android:gravity="left"
-            android:text="@string/desc"
-            android:textSize="20sp" />
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="55sp" />
 
         <TextView
             android:id="@+id/date1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="3dp"
-            android:gravity="left"
-            android:text="00-00-0000 00:00" />
+            android:layout_margin="10dp"
+            android:text="00-00-0000 00:00"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/description3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="left|center"
+            android:text="Images"
+            android:textColor="@color/appOrange"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
 
         <GridView
             android:id="@+id/photo1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:horizontalSpacing="5dp"
             android:numColumns="3"
-            android:verticalSpacing="5dp">
+            android:verticalSpacing="5dp"/>
 
-        </GridView>
+
+        <TextView
+            android:id="@+id/description0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="left|center"
+            android:text="@string/desc"
+            android:textColor="@color/appOrange"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/description1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="left"
+            android:text="@string/desc"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
     </LinearLayout>
 
 

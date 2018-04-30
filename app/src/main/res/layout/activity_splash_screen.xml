@@ -8,7 +8,6 @@
     android:background="@drawable/splashd"
     android:gravity="center"
     android:orientation="vertical"
-    android:theme="@style/AppTheme.NoActionBar"
     tools:context="com.project.wanderlust.Activities.AcitivitySplashScreen">
 
 

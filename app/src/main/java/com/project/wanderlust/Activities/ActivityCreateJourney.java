@@ -1,10 +1,15 @@
 package com.project.wanderlust.Activities;
 
+import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.os.Bundle;
 import android.view.View;
@@ -22,10 +27,13 @@ import com.project.wanderlust.Adapters.SelectedPicturesAdapter;
 import com.project.wanderlust.Fragments.FragmentJourneysList;
 import com.project.wanderlust.DataClasses.JourneyMini;
 import com.project.wanderlust.R;
-import com.project.wanderlust.Others.SaveImages;
 import com.project.wanderlust.Others.SharedFunctions;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -91,8 +99,15 @@ public class ActivityCreateJourney extends ActionBarMenu
                         {
                             ClipData.Item item = mClipData.getItemAt(i);
                             Uri uri = item.getUri();
-                            Bitmap bitmap = SharedFunctions.decodeBitmapFromFile(new File(getRealPathFromURI(uri)), 500, 500);
-                            photos.add(bitmap);
+                            try {
+                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+
+                                photos.add(bitmap);
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
                         }
                         adapter.notifyDataSetChanged();
                     }
@@ -126,12 +141,14 @@ public class ActivityCreateJourney extends ActionBarMenu
             Toast.makeText(this, "Please give your journey a title", Toast.LENGTH_LONG).show();
             return;
         }
+
+        final ProgressDialog dialog = ProgressDialog.show(this, "Please wait", "Creating Jounrey...", true);
+
         Date date = new Date();
 
         final String time = new SimpleDateFormat(DATE_FORMAT).format(date);
 
-        //save all images locally
-        new SaveImages(getApplicationContext(), time, photos).execute();
+        new SaveImages(getApplicationContext(),time,photos).execute();
 
         //save title and description in online db
         final Map<String, String> map = new HashMap<>();
@@ -151,8 +168,21 @@ public class ActivityCreateJourney extends ActionBarMenu
                 .update(journeyToIndex);
         //-------------------------------------------
 
-        FragmentJourneysList.journeys.add(new JourneyMini(t, date, "Faisal Town", "Lahore", null));
-        adapter.notifyDataSetChanged();
+        Bitmap p = null;
+
+        //select one image as journey pic
+        if (photos.size() != 0)
+        {
+            Bitmap p1 = photos.get(0);
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+            p1.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            p = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
+        }
+
+        FragmentJourneysList.journeys.add(new JourneyMini(t, date, "Faisal Town", "Lahore",p));
+        FragmentJourneysList.adapter.notifyDataSetChanged();
 
         Toast.makeText(this, "Journey Created Successfully!", Toast.LENGTH_LONG).show();
 
@@ -172,6 +202,45 @@ public class ActivityCreateJourney extends ActionBarMenu
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select Pictures"), GALLERY);
+    }
+
+
+    //-----------ASYNC TASK TO SAVE IMAGES------------------//
+    class SaveImages extends AsyncTask<Void, Integer, Void>
+    {
+        private Context context;
+        private String time;
+        private ArrayList<Bitmap> photos;
+
+        public SaveImages(Context context, String time, ArrayList<Bitmap> photos)
+        {
+            this.context = context;
+            this.time = time;
+            this.photos = photos;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+
+            //Save Images Locally
+            ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
+            File file = wrapper.getDir(time, Context.MODE_PRIVATE);
+
+            for(int i = 0; i < photos.size(); i++)
+            {
+                File file1 = new File(file, i + ".jpg");
+                try
+                {
+                    OutputStream stream = new FileOutputStream(file1);
+                    photos.get(i).compress(Bitmap.CompressFormat.JPEG,100,stream);
+                    stream.flush();
+                    stream.close();
+                } catch (Exception e) {}
+            }
+
+            return null;
+        }
     }
 
 }

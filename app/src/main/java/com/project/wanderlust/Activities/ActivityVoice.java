@@ -55,16 +55,23 @@ public class ActivityVoice extends ActionBarMenu {
         if (requestCode == 2 && resultCode == RESULT_OK)
         {
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            ArrayList<String> voice = new ArrayList<>();
 
-            if (matches.contains("Send") && matches.contains("Invite"))
+            for (int i = 0; i < matches.size(); i++)
+                voice.add(matches.get(i).toLowerCase());
+
+            if (voice.contains("send invite"))
             {
-                startActivity(new Intent(this, ActivityExtra.class));
+                Intent intent = new Intent(this, ActivityExtra.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+
                 finish();
             }
 
-            if (matches.contains("Close") && matches.contains("App"))
+            if (voice.contains("close app"))
             {
-                System.exit(0);
+                finishAffinity();
             }
         }
     }

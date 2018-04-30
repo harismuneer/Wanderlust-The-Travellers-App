@@ -36,19 +36,24 @@ public class ActionBarMenu extends AppCompatActivity {
             {
                 Intent intent = new Intent(this, ActivityUserDetails.class);
                 intent.putExtra("phoneNumber", FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber());
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
 
                 return true;
             }
             case R.id.InviteLink:
             {
-                startActivity(new Intent(this, ActivityExtra.class));
+                Intent intent = new Intent(this, ActivityExtra.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
 
                 return true;
             }
             case R.id.voice:
             {
-                startActivity(new Intent(this, ActivityVoice.class));
+                Intent intent = new Intent(this, ActivityVoice.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
 
                 return true;
             }
@@ -59,13 +64,17 @@ public class ActionBarMenu extends AppCompatActivity {
             }
             case R.id.Compass:
             {
-                startActivity(new Intent(this, CompassActivity.class));
+                Intent intent = new Intent(this, CompassActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
 
                 return true;
             }
             case R.id.StepCount:
             {
-                startActivity(new Intent(this, StepCountActivity.class));
+                Intent intent = new Intent(this, StepCountActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
 
                 return true;
             }

@@ -31,7 +31,7 @@ public class ActivityUserDetails extends ActionBarMenu {
         setContentView(R.layout.activity_user_details);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.hide();
 
         //Google Admob
         try {
