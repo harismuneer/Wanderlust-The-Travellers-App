@@ -47,7 +47,6 @@ public class AdapterJourneyList extends RecyclerView.Adapter<AdapterJourneyList.
             holder.photo.setImageBitmap(userPic);
             holder.userName.setText(userName);
             holder.location.setText(item.location);
-            holder.locationBroader.setText(item.broaderLoocation);
             holder.date.setText((SharedFunctions.months[item.date.getMonth() - 1] + " " + item.date.getDate()));
             holder.title.setText(item.title);
 
@@ -85,7 +84,6 @@ public class AdapterJourneyList extends RecyclerView.Adapter<AdapterJourneyList.
         public ImageView photo;
         public TextView userName;
         public TextView location;
-        public TextView locationBroader;
         public TextView date;
         public TextView title;
         public ImageView journeyPic;
@@ -97,7 +95,6 @@ public class AdapterJourneyList extends RecyclerView.Adapter<AdapterJourneyList.
             photo = view.findViewById(R.id.photo);
             userName = view.findViewById(R.id.userName);
             location = view.findViewById(R.id.location);
-            locationBroader = view.findViewById(R.id.locationBroader);
             date = view.findViewById(R.id.date);
             title = view.findViewById(R.id.title);
             journeyPic = view.findViewById(R.id.journeyPic);

@@ -25,36 +25,37 @@
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User" />
-
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="Faisal Town"
-            android:textColor="@android:color/black"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/locationBroader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lahore" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="April 24" />
+            android:layout_marginBottom="1dp"
+            android:text="User"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Journey Title"
+            android:textColor="@color/appOrange"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Faisal Town"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Journey Title" />
+            android:text="April 24"
+            android:textColor="@color/appOrange"
+            android:textStyle="bold" />
 
         <com.project.wanderlust.Others.ViewSquareImage
             android:id="@+id/journeyPic"

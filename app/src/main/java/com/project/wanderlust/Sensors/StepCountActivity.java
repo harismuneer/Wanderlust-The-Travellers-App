@@ -46,6 +46,8 @@ public class StepCountActivity extends ActionBarMenu implements SensorEventListe
         BtnStart = (Button) findViewById(R.id.btn_start);
         BtnStop = (Button) findViewById(R.id.btn_stop);
 
+        //disable stop button initially
+        BtnStop.setEnabled(false);
 
         BtnStart.setOnClickListener(new View.OnClickListener()
         {

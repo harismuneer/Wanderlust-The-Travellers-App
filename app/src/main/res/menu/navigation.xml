@@ -7,9 +7,14 @@
         android:title="@string/title_notes" />
 
     <item
+        android:id="@+id/navigation_journeysMap"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="@string/title_journeysMap" />
+    <item
         android:id="@+id/navigation_journeys"
         android:icon="@android:drawable/ic_menu_myplaces"
         android:title="@string/title_journeys" />
+
 
     <item
         android:id="@+id/navigation_friends"

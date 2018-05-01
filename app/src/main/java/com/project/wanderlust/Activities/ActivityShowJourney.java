@@ -16,6 +16,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,12 +35,19 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ActivityShowJourney extends ActionBarMenu implements  TextToSpeech.OnInitListener {
-    private AdapterShowImages adapter;
+
+    final ArrayList<Uri> photos = new ArrayList<>();
+    private AdapterShowImages   adapter;
+
 
     TextView titleView;
     TextView descriptionView;
+    TextView addressView;
+
     private TextToSpeech tts;
     FloatingActionButton myFab;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +73,15 @@ public class ActivityShowJourney extends ActionBarMenu implements  TextToSpeech.
 
         titleView = findViewById(R.id.title1);
         descriptionView = findViewById(R.id.description1);
+        addressView = findViewById(R.id.address);
 
         final TextView dateView = findViewById(R.id.date1);
         final GridView photoGrid = findViewById(R.id.photo1);
 
-        new showImages(photoGrid, timestamp).execute();
+        adapter = new AdapterShowImages(getApplicationContext(), photos);
+        photoGrid.setAdapter(adapter);
+
+        new showImages(timestamp).execute();
 
         //Get that particular journey
         FirebaseDatabase.getInstance().getReference("Journeys").child(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()).child(timestamp)
@@ -79,12 +91,15 @@ public class ActivityShowJourney extends ActionBarMenu implements  TextToSpeech.
                         String dateString = dataSnapshot.getKey();
                         String title = dataSnapshot.child(ActivityCreateJourney.TITLE).getValue(String.class);
                         String description = dataSnapshot.child(ActivityCreateJourney.DESCRIPTION).getValue(String.class);
+                        String address = dataSnapshot.child("address").getValue(String.class);
+
                         titleView.setText(title);
-                        if(description.equals(""))
+                        if(description == null || description.equals(""))
                             descriptionView.setVisibility(View.GONE);
                         else
                             descriptionView.setText(description);
 
+                        addressView.setText(address);
                         try {
                             Date date = new SimpleDateFormat(ActivityCreateJourney.DATE_FORMAT).parse(dateString);
 
@@ -106,12 +121,10 @@ public class ActivityShowJourney extends ActionBarMenu implements  TextToSpeech.
     //-----------ASYNC TASK TO SAVE IMAGES------------------//
     class showImages extends AsyncTask<Void, Integer, Void>
     {
-        GridView photoGrid;
         String timestamp;
 
-        showImages(GridView g, String t)
+        showImages(String t)
         {
-            this.photoGrid = g;
             this.timestamp = t;
         }
 
@@ -119,37 +132,39 @@ public class ActivityShowJourney extends ActionBarMenu implements  TextToSpeech.
         protected Void doInBackground(Void... voids)
         {
             //get photos from local storage and show
-            final ArrayList<Uri> photos = new ArrayList<>();
+
             ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
-            File file = wrapper.getDir(timestamp,MODE_PRIVATE);
-            if (file.isDirectory())
-            {
+            File file = wrapper.getDir(timestamp, MODE_PRIVATE);
+            if (file.isDirectory()) {
                 String[] images = file.list();
-                for(String image : images) {
-                    photos.add(Uri.parse(new File(file, image).getAbsolutePath()));
-                }
+                if (images.length != 0) {
+                    for (String image : images) {
+                        photos.add(Uri.parse(new File(file, image).getAbsolutePath()));
+                    }
 
-                adapter = new AdapterShowImages(getApplicationContext(), photos);
-                photoGrid.setAdapter(adapter);
-
-                if(photos.size() != 0) {
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         public void run() {
+                            //adapter notify
+                            adapter.notifyDataSetChanged();
                             Toast.makeText(getApplicationContext(), "Pics Loaded Successfully.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
             }
 
-            if (photos.size() == 0)
-            {
-                TextView t1 = findViewById(R.id.description3);
-                GridView v1 = findViewById(R.id.photo1);
+            Handler handler2 = new Handler(Looper.getMainLooper());
+            handler2.post(new Runnable() {
+                public void run() {
+                    if (photos.size() == 0) {
+                        TextView t1 = findViewById(R.id.description3);
+                        GridView v1 = findViewById(R.id.photo1);
 
-                t1.setVisibility(View.GONE);
-                v1.setVisibility(View.GONE);
-            }
+                        t1.setVisibility(View.GONE);
+                        v1.setVisibility(View.GONE);
+                    }
+                }
+            });
 
             return null;
         }

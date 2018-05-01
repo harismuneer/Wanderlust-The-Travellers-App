@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class ActivityVerifyPhoneNumber extends AppCompatActivity
 {
     FirebaseAuth mAuth;
-    private static String code = "";
+    private String code = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.appindexing.FirebaseAppIndex;
 import com.google.firebase.appindexing.Indexable;
 import com.google.firebase.appindexing.builders.Indexables;
@@ -26,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.project.wanderlust.Adapters.SelectedPicturesAdapter;
 import com.project.wanderlust.Fragments.FragmentJourneysList;
 import com.project.wanderlust.DataClasses.JourneyMini;
+import com.project.wanderlust.Fragments.FragmentMap;
 import com.project.wanderlust.R;
 import com.project.wanderlust.Others.SharedFunctions;
 
@@ -58,6 +62,11 @@ public class ActivityCreateJourney extends ActionBarMenu
     final ArrayList<Bitmap> photos = new ArrayList<>();
     SelectedPicturesAdapter adapter;
 
+    String lon;
+    String lat;
+    String address;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -75,6 +84,12 @@ public class ActivityCreateJourney extends ActionBarMenu
         adapter = new SelectedPicturesAdapter(this, photos);
         GridView gridView = findViewById(R.id.photoGrid);
         gridView.setAdapter(adapter);
+
+
+        Intent intent = getIntent();
+        lon = (String) intent.getSerializableExtra("lon");
+        lat = (String) intent.getSerializableExtra("lat");
+        address = (String) intent.getSerializableExtra("address");
     }
 
 
@@ -154,6 +169,9 @@ public class ActivityCreateJourney extends ActionBarMenu
         final Map<String, String> map = new HashMap<>();
         map.put(TITLE, t);
         map.put(DESCRIPTION, d);
+        map.put("longitude", lon);
+        map.put("latitude", lat);
+        map.put("address", address);
         mReference.child(time).setValue(map);
 
 
@@ -170,8 +188,21 @@ public class ActivityCreateJourney extends ActionBarMenu
             p = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
         }
 
-        FragmentJourneysList.journeys.add(new JourneyMini(t, date, "Faisal Town", "Lahore",p));
+        JourneyMini j1 = new JourneyMini(t, date, address, p, d);
+        FragmentJourneysList.journeys.add(j1);
         FragmentJourneysList.adapter.notifyDataSetChanged();
+
+        //ALSO PLACE MARKER ON MAP
+
+        Double lon1 = Double.parseDouble(lon);
+        Double lat1 = Double.parseDouble(lat);
+
+        //Place the corresponding marker too
+        j1.marker = FragmentMap.mMap.addMarker(new MarkerOptions()
+                .title(t)
+                .position(new LatLng(lat1, lon1))
+                .snippet(date + "\n" + d));
+        j1.marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
 
         Toast.makeText(this, "Journey Created Successfully!", Toast.LENGTH_LONG).show();
 

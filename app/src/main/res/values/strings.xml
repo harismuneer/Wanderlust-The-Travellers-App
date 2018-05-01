@@ -253,11 +253,21 @@
     <string name="title_notes">Notes</string>
     <string name="title_journeys">Journeys</string>
     <string name="title_friends">Friends</string>
+    <string name="title_journeysMap">Journey Map</string>
+
 
     <string name="action_profile">Profile</string>
     <string name="action_invitelink">Share</string>
     <string name="action_voice">Voice Commands</string>
     <string name="action_compass">Compass</string>
     <string name="action_step">Pedometer</string>
+    <string name="title_activity_ads">ads</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-3963432354728475/7625052509</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

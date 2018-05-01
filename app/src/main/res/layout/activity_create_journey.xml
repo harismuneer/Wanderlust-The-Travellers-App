@@ -21,9 +21,11 @@
             android:layout_marginTop="4dp"
             android:hint="@string/title"
             android:textSize="25sp"
-            android:inputType="text"
+            android:inputType="text|textMultiLine"
             android:maxLines="1"
-            android:backgroundTint="@color/appOrange"/>
+            android:backgroundTint="@color/appOrange"
+            android:maxLength="30"
+            />
 
         <EditText
             android:id="@+id/description"
@@ -34,10 +36,11 @@
             android:layout_marginTop="10dp"
             android:hint="@string/description"
             android:textSize="18sp"
-            android:inputType="text"
+            android:inputType="text|textMultiLine"
             android:backgroundTint="@color/white"
-            android:maxLines="5"/>
-
+            android:maxLines="5"
+            android:maxLength="200"
+            />
 
 
         <LinearLayout

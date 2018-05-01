@@ -52,19 +52,21 @@ public class ActivityRegisterPhoneNumber extends AppCompatActivity {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
             FirebaseDatabase.getInstance().getReference("Users").keepSynced(true);
             FirebaseDatabase.getInstance().getReference("Journeys").keepSynced(true);
+            FirebaseDatabase.getInstance().getReference("Notes").keepSynced(true);
         } catch (Exception ex) {
             Crashlytics.logException(ex);
         }
 
 
         //asking for permissions
-        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION};
+        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WAKE_LOCK};
         if (!SharedFunctions.hasPermissions(getApplicationContext(), permissions)) {
             ActivityCompat.requestPermissions(this, permissions, 1);
         }
 
         doAfterPermissions();
 
+        //For App - Indexing URL
         // ATTENTION: This was auto-generated to handle app links.
         Intent appLinkIntent = getIntent();
         String appLinkAction = appLinkIntent.getAction();

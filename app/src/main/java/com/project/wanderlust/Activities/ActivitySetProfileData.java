@@ -116,7 +116,7 @@ public class ActivitySetProfileData extends AppCompatActivity
 
             byte[] data = baos.toByteArray();
 
-            final ProgressDialog dialog = ProgressDialog.show(this, "Please wait", "Uploading Profile Image...", true);
+            final ProgressDialog dialog = ProgressDialog.show(this, "Please wait", "Creating your profile...", true);
 
             //upload the byte array online on firebase storage
             UploadTask uploadTask = reference.putBytes(data);
@@ -165,7 +165,6 @@ public class ActivitySetProfileData extends AppCompatActivity
                     mDatabase.child("Users").child(phone).setValue(map);
 
                     //Name is saved successfully in Users.
-
                     startActivity(new Intent(ActivitySetProfileData.this, ActivityHome.class));
                     finish();
                 }

@@ -9,18 +9,18 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SET_DEBUG_APP" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".Activities.AcitivitySplashScreen"
             android:screenOrientation="portrait">
@@ -30,7 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activities.ActivityRegisterPhoneNumber"
             android:windowSoftInputMode="stateAlwaysHidden">
@@ -42,44 +41,39 @@
 
                 <data
                     android:host="wanderlust.com"
-                    android:scheme="http"
-                    android:pathPrefix="/message" />
+                    android:pathPrefix="/message"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activities.ActivityVerifyPhoneNumber"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
         <activity android:name=".Activities.ActivitySetProfileData" />
-
         <activity
             android:name=".Activities.ActivityExtra"
             android:label="Invites" />
-
         <activity
             android:name=".Activities.ActivityCreateJourney"
             android:label="Create Journey" />
-
         <activity
             android:name=".Activities.ActivityShowJourney"
             android:label="Show Journey" />
-
         <activity android:name=".Activities.ActivityUserDetails" />
-
         <activity
             android:name=".Activities.ActivityHome"
-            android:label="@string/title_activity_home"></activity>
-
+            android:label="@string/title_activity_home" />
         <activity
             android:name=".Activities.ActivityVoice"
             android:label="Voice Commands" />
         <activity
             android:name=".Sensors.CompassActivity"
-            android:label="Compass"></activity>
+            android:label="Compass" />
         <activity
             android:name=".Sensors.StepCountActivity"
-            android:label="Pedometer"></activity>
+            android:label="Pedometer" />
+
+        <activity android:name=".Activities.ActivitySelectLocation"
+            android:label="Select Location"/>
 
 
         <!-- FCM -->
@@ -106,22 +100,32 @@
             android:resource="@color/colorAccent" />
         <!--  -->
 
-        <!--APP INDEXING -->
+
+        <!-- APP INDEXING -->
         <!-- Register the BroadcastReceiver -->
-        <receiver android:name=".Others.AppIndexingUpdateReceiver"
+        <receiver
+            android:name=".Others.AppIndexingUpdateReceiver"
             android:exported="true"
             android:permission="com.google.android.gms.permission.APPINDEXING">
-
             <intent-filter>
                 <action android:name="com.google.firebase.appindexing.UPDATE_INDEX" />
             </intent-filter>
         </receiver>
 
         <!-- Grant the AppIndexingUpdateService permission and enable it to run after being triggered -->
-        <service android:name=".Others.AppIndexingUpdateService"
+        <service
+            android:name=".Others.AppIndexingUpdateService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <!-- The API key for Google Maps-based APIs is defined as a string resource. -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB1g67h6Q8Hf67BCJvm_yVhZbTBXv6BEvo" />
 
+        <!-- This meta-data tag is required to use Google Play Services. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
     </application>
 

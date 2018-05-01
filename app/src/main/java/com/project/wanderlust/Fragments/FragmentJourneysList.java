@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,12 +25,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.project.wanderlust.Activities.ActivityCreateJourney;
+import com.project.wanderlust.Activities.ActivitySelectLocation;
 import com.project.wanderlust.Activities.ActivityShowJourney;
 import com.project.wanderlust.Adapters.AdapterJourneyList;
 import com.project.wanderlust.DataClasses.JourneyMini;
@@ -110,7 +116,9 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), ActivityCreateJourney.class));
+                Intent i = new Intent(getContext(), ActivitySelectLocation.class);
+                i.putExtra("callActivity", "journey");
+                startActivity(i);
             }
         });
 
@@ -156,9 +164,12 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
                                     try {
                                         Date date = format.parse(ds.getKey());
                                         String title = ds.child(ActivityCreateJourney.TITLE).getValue(String.class);
+                                        String address = ds.child("address").getValue(String.class);
                                         File file = wrapper.getDir(ds.getKey(), MODE_PRIVATE);
                                         Uri photo = null;
                                         Bitmap photo1 = null;
+
+                                        String desc = ds.child("description").getValue(String.class);
 
                                         //if that journey has a photo then choose one photo from it.
                                         if (file.isDirectory()) {
@@ -170,8 +181,28 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
                                             }
                                         }
 
+                                        JourneyMini j1 = new JourneyMini(title, date, address, photo1, desc);
+
                                         //Location of Journey par kaam karna abhi
-                                        journeys.add(new JourneyMini(title, date, "Faisal Town", "Lahore", photo1));
+                                        journeys.add(j1);
+
+
+                                        String lon = ds.child("longitude").getValue(String.class);
+                                        String lat = ds.child("latitude").getValue(String.class);
+
+                                        try {
+                                            //Place the corresponding marker too
+                                             j1.marker = FragmentMap.mMap.addMarker(new MarkerOptions()
+                                                     .title(title)
+                                                    .position(new LatLng(Double.parseDouble(lat), Double.parseDouble(lon)))
+                                                    .snippet(new SimpleDateFormat(ActivityCreateJourney.DATE_FORMAT).format(date) + "\n" + desc));
+                                             j1.marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                                        }
+                                        catch (Exception e)
+                                        {
+
+                                        }
+
                                     } catch (ParseException e) {
                                     }
                                 }
@@ -197,10 +228,11 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
                                 Handler handler = new Handler(Looper.getMainLooper());
                                 handler.post(new Runnable() {
                                     public void run() {
-                                        Toast.makeText(getContext(),"Journeys Successfully Loaded..",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(),"Journeys Successfully Loaded",Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
+                                //---Place Markers on Map
                             }
 
                             @Override

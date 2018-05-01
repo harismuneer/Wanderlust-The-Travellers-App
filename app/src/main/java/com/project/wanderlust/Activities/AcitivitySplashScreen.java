@@ -41,11 +41,11 @@ import java.util.ArrayList;
 
 public class AcitivitySplashScreen extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 5000;
+    private int SPLASH_TIME_OUT = 5000;
     public  LinearLayout linear;
     public  FirebaseRemoteConfig config;
     public  long cacheExpiration;
-    public static String adID = "ca-app-pub-3963432354728475~4835237630";
+    public String adID = "ca-app-pub-3963432354728475~4835237630";
 
 
     @Override
