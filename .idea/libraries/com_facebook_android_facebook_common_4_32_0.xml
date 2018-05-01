@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.facebook.android:facebook-common-4.32.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-common-4.32.0.aar/2530151c009f9c65c2741b01313d33ca/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-common-4.32.0.aar/2530151c009f9c65c2741b01313d33ca/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-common/4.32.0/eeb938618ea70c3631c00e53005527223f7fe324/facebook-common-4.32.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

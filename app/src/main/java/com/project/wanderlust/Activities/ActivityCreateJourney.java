@@ -201,7 +201,7 @@ public class ActivityCreateJourney extends ActionBarMenu
         j1.marker = FragmentMap.mMap.addMarker(new MarkerOptions()
                 .title(t)
                 .position(new LatLng(lat1, lon1))
-                .snippet(date + "\n" + d));
+                .snippet(time + "\n" + d));
         j1.marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
 
         Toast.makeText(this, "Journey Created Successfully!", Toast.LENGTH_LONG).show();
