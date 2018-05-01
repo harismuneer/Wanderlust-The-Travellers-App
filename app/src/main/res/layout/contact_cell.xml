@@ -36,6 +36,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/com_facebook_likeboxcountview_border_color" />
     </LinearLayout>
 
     <TextView

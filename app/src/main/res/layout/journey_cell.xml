@@ -63,6 +63,12 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/com_facebook_likeboxcountview_border_color" />
     </LinearLayout>
 
 </LinearLayout>
