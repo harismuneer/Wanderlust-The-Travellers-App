@@ -60,6 +60,7 @@ public class FragmentContactsList extends Fragment implements RecyclerView.OnIte
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.fragment_contacts_list, container, false);
+        setRetainInstance(true);
 
         return rootView;
     }
@@ -70,6 +71,7 @@ public class FragmentContactsList extends Fragment implements RecyclerView.OnIte
         super.onActivityCreated(b);
 
         c = getContext();
+
 
         //-----------RECYCLER VIEW CODE-----------------//
         rv = getView().findViewById(R.id.contactRecyclerView);

@@ -10,27 +10,38 @@ android:orientation="vertical"
 tools:context="com.project.wanderlust.Activities.ActivityVoice">
 
 
-<TextView
-    android:id="@+id/check"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="100dp"
-    android:fontFamily="cursive"
-    android:gravity="center"
-    android:text="Voice Interactions"
-    android:textColor="@android:color/holo_red_light"
-    android:textSize="70sp"
-    android:textStyle="bold" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-<Button
-    android:id="@+id/button2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/appOrange"
-    android:onClick="startSpeechRecognition"
-    android:text="Start"
-    android:theme="@style/AppTheme" />
+            <TextView
+                android:id="@+id/check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:fontFamily="cursive"
+                android:gravity="center"
+                android:text="Voice Interactions"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="70sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="100dp"
+                android:background="@color/appOrange"
+                android:onClick="startSpeechRecognition"
+                android:text="Start"
+                android:theme="@style/AppTheme" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

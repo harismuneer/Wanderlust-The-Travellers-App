@@ -1,5 +1,6 @@
 package com.project.wanderlust.Activities;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -54,31 +55,33 @@ public class ActivityHome extends ActionBarMenu {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        bottombar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottombar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        if(savedInstanceState == null) {
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new FPagerAdapter(getSupportFragmentManager()));
+            bottombar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+            bottombar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        viewPager.setOffscreenPageLimit(3);
+            viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        //When swipe occurs
-        viewPager.setOnPageChangeListener(
-                new ViewPager.SimpleOnPageChangeListener() {
-                    @Override
-                    public void onPageSelected(int position)
-                    {
-                        if (position == 0)
-                            bottombar.setSelectedItemId(R.id.navigation_notes);
-                        else if (position == 1)
-                            bottombar.setSelectedItemId(R.id.navigation_journeysMap);
-                        else if (position == 2)
-                            bottombar.setSelectedItemId(R.id.navigation_journeys);
-                        else if (position == 3)
-                            bottombar.setSelectedItemId(R.id.navigation_friends);
-                    }
-                });
+            viewPager.setAdapter(new FPagerAdapter(getSupportFragmentManager()));
 
+            viewPager.setOffscreenPageLimit(3);
+
+            //When swipe occurs
+            viewPager.setOnPageChangeListener(
+                    new ViewPager.SimpleOnPageChangeListener() {
+                        @Override
+                        public void onPageSelected(int position) {
+                            if (position == 0)
+                                bottombar.setSelectedItemId(R.id.navigation_notes);
+                            else if (position == 1)
+                                bottombar.setSelectedItemId(R.id.navigation_journeysMap);
+                            else if (position == 2)
+                                bottombar.setSelectedItemId(R.id.navigation_journeys);
+                            else if (position == 3)
+                                bottombar.setSelectedItemId(R.id.navigation_friends);
+                        }
+                    });
+        }
     }
 
 

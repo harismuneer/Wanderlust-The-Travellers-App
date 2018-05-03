@@ -5,85 +5,95 @@
     android:layout_height="match_parent"
     tools:context=".Activities.ActivityCreateJourney">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp">
-        <EditText
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:hint="@string/title"
-            android:textSize="25sp"
-            android:inputType="text|textMultiLine"
-            android:maxLines="1"
-            android:backgroundTint="@color/appOrange"
-            android:maxLength="30"
-            />
-
-        <EditText
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:hint="@string/description"
-            android:textSize="18sp"
-            android:inputType="text|textMultiLine"
-            android:backgroundTint="@color/white"
-            android:maxLines="5"
-            android:maxLength="200"
-            />
-
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center">
+            android:orientation="vertical" >
 
-            <Button
-                android:id="@+id/camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:background="@color/appOrange"
-                android:onClick="getCameraPicture"
-                android:text="@string/camera" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="50dp"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/gallery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:background="@color/appOrange"
-                android:onClick="getGalleryPictures"
-                android:text="@string/gallery"
-                tools:layout_editor_absoluteY="111dp" />
+                <EditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/appOrange"
+                    android:hint="@string/title"
+                    android:inputType="text|textMultiLine"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/description"
+                    android:inputType="text|textMultiLine"
+                    android:maxLength="200"
+                    android:maxLines="5"
+                    android:textSize="18sp" />
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:background="@color/appOrange"
+                        android:onClick="getCameraPicture"
+                        android:text="@string/camera" />
+
+                    <Button
+                        android:id="@+id/gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:background="@color/appOrange"
+                        android:onClick="getGalleryPictures"
+                        android:text="@string/gallery"
+                        tools:layout_editor_absoluteY="111dp" />
+                </LinearLayout>
+
+                <GridView
+                    android:id="@+id/photoGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="3"
+                    android:verticalSpacing="5dp" />
+            </LinearLayout>
         </LinearLayout>
-
-        <GridView
-            android:id="@+id/photoGrid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:numColumns="3"
-            android:horizontalSpacing="5dp"
-            android:verticalSpacing="5dp"/>
-    </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/buttonLayout"

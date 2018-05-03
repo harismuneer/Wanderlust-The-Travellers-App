@@ -55,6 +55,9 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
+        setRetainInstance(true);
+
+
         if (mapFragment == null) {
             mapFragment = SupportMapFragment.newInstance();
             mapFragment.getMapAsync(this);

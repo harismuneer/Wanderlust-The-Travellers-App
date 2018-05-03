@@ -1,94 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-        tools:context=".Activities.ActivityShowJourney">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/title1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:fontFamily="cursive"
-            android:gravity="left|center_vertical|center_horizontal|center"
-            android:padding="5dp"
-            android:text="@string/title1"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@android:color/holo_orange_light"
-            android:textSize="55sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/date1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="00-00-0000 00:00"
-            android:textAlignment="center"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="20sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                tools:context=".Activities.ActivityShowJourney">
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="00-00-0000 00:00"
-            android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/title1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="cursive"
+                    android:gravity="left|center_vertical|center_horizontal|center"
+                    android:padding="5dp"
+                    android:text="@string/title1"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/holo_orange_light"
+                    android:textSize="55sp" />
 
-        <TextView
-            android:id="@+id/description3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="left|center"
-            android:text="Images"
-            android:textColor="@color/appOrange"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/date1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="00-00-0000 00:00"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="20sp" />
 
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="00-00-0000 00:00"
+                    android:textSize="18sp" />
 
-        <GridView
-            android:id="@+id/photo1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:horizontalSpacing="5dp"
-            android:numColumns="3"
-            android:verticalSpacing="5dp" />
-
-
-        <TextView
-            android:id="@+id/description0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="left|center"
-            android:text="@string/desc"
-            android:textColor="@color/appOrange"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/description3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="left|center"
+                    android:text="Images"
+                    android:textColor="@color/appOrange"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
 
-        <TextView
-            android:id="@+id/description1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="left"
-            android:text="@string/desc"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
-    </LinearLayout>
+                <GridView
+                    android:id="@+id/photo1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="3"
+                    android:verticalSpacing="5dp" />
+
+
+                <TextView
+                    android:id="@+id/description0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="left|center"
+                    android:text="@string/desc"
+                    android:textColor="@color/appOrange"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/description1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="left"
+                    android:text="@string/desc"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
     <android.support.design.widget.FloatingActionButton

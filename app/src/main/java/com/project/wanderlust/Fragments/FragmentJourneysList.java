@@ -66,6 +66,7 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.fragment_journeys_list, container, false);
+        setRetainInstance(true);
 
         return rootView;
     }
@@ -74,6 +75,7 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
     public  void onActivityCreated(Bundle b)
     {
         super.onActivityCreated(b);
+
 
         //-----------RECYCLER VIEW CODE-----------------//
         rv = getView().findViewById(R.id.journeysList);

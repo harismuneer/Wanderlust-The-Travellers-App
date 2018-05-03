@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/splashlinear"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".Activities.ActivityExtra">
 
-
-    <TextView
-        android:id="@+id/check"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:fontFamily="cursive"
-        android:gravity="center"
-        android:text="Send Invites"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="70sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="125dp"
+                android:fontFamily="cursive"
+                android:gravity="center"
+                android:text="Send Invites"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="70sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="100dp"
+                android:background="@color/appOrange"
+                android:gravity="center"
+                android:onClick="invite"
+                android:text="Send"
+                android:theme="@style/AppTheme" />
+        </LinearLayout>
+    </ScrollView>
 
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/appOrange"
-        android:onClick="invite"
-        android:text="Send"
-        android:theme="@style/AppTheme" />
-
-
-</LinearLayout>
+</RelativeLayout>

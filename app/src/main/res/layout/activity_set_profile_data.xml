@@ -5,54 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/provide_info"
-        android:textSize="25sp"
-        android:textColor="@color/appOrange"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/provide_profile_info"
-        android:textAlignment="center"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="60dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        android:gravity="center">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/photo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/account"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"/>
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/name"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:hint="@string/type_name"
-            android:textColorHint="@android:color/darker_gray"
-            app:backgroundTint="@color/appOrange"/>
+            android:orientation="vertical" >
 
-    </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/provide_info"
+                    android:textAlignment="center"
+                    android:textColor="@color/appOrange"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="60dp"
+                    android:text="@string/provide_profile_info"
+                    android:textAlignment="center" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="100dp"
+                    android:gravity="center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/photo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/account" />
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:hint="@string/type_name"
+                        android:textColorHint="@android:color/darker_gray"
+                        app:backgroundTint="@color/appOrange" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:layout_width="wrap_content"
