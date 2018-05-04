@@ -307,6 +307,9 @@
     <string name="invitationSeccessfull">Invite sent successfully</string>
     <string name="error_send_invite">there was some error while sending invite</string>
     <string name="please_wait">Please wait</string>
+    <string name="invites">Invites</string>
+    <string name="createJurney">Create Journey</string>
+    <string name="ShowJourney">Show Journey</string>
 
 
 </resources>

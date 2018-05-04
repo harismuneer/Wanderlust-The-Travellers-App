@@ -99,6 +99,8 @@
     <string name="invitationSeccessfull">مدعو کامیابی سے بھیجی گئی!</string>
     <string name="error_send_invite">مدعو بھیجنے کے دوران کچھ غلطی ہوئی.</string>
     <string name="please_wait">برائے مہربانی انتظار کریں</string>
+    <string name="invites">مدعو کریں</string>
+    <string name="createJurney">سفر بنائیں</string>
 
 
 </resources>

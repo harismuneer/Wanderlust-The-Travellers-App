@@ -36,7 +36,6 @@
         </activity>
 
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.ActivityRegisterPhoneNumber"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
@@ -52,41 +51,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.ActivityVerifyPhoneNumber"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".Activities.ActivitySetProfileData" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.ActivityExtra"
-            android:label="Invites" />
+            android:label="@string/invites" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.ActivityCreateJourney"
-            android:label="Create Journey" />
+            android:label="@string/createJurney" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.ActivityShowJourney"
-            android:label="Show Journey" />
+            android:label="@string/ShowJourney" />
         <activity android:name=".Activities.ActivityUserDetails" />
         <activity
             android:name=".Activities.ActivityHome"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.ActivityVoice"
             android:label="Voice Commands" />
         <activity
-
             android:name=".Sensors.CompassActivity"
             android:label="Compass" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Sensors.StepCountActivity"
             android:label="Pedometer" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.ActivitySelectLocation"
             android:label="Select Location" />
 
