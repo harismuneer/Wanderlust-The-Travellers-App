@@ -32,17 +32,14 @@ public class ActivityHome extends ActionBarMenu {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_notes:
+                case R.id.navigation_journeysMap:
                     viewPager.setCurrentItem(0);
                     return true;
-                case R.id.navigation_journeysMap:
+                case R.id.navigation_journeys:
                     viewPager.setCurrentItem(1);
                     return true;
-                case R.id.navigation_journeys:
-                    viewPager.setCurrentItem(2);
-                    return true;
                 case R.id.navigation_friends:
-                    viewPager.setCurrentItem(3);
+                    viewPager.setCurrentItem(2);
                     return true;
             }
             return false;
@@ -55,8 +52,8 @@ public class ActivityHome extends ActionBarMenu {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        if(savedInstanceState == null) {
-
+        if(savedInstanceState == null)
+        {
             bottombar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
             bottombar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -72,12 +69,10 @@ public class ActivityHome extends ActionBarMenu {
                         @Override
                         public void onPageSelected(int position) {
                             if (position == 0)
-                                bottombar.setSelectedItemId(R.id.navigation_notes);
-                            else if (position == 1)
                                 bottombar.setSelectedItemId(R.id.navigation_journeysMap);
-                            else if (position == 2)
+                            else if (position == 1)
                                 bottombar.setSelectedItemId(R.id.navigation_journeys);
-                            else if (position == 3)
+                            else if (position == 2)
                                 bottombar.setSelectedItemId(R.id.navigation_friends);
                         }
                     });
@@ -88,7 +83,7 @@ public class ActivityHome extends ActionBarMenu {
     //Fragment Pager Adapter
     public class FPagerAdapter extends FragmentPagerAdapter
     {
-        final int PAGE_COUNT = 4;
+        final int PAGE_COUNT = 3;
 
         public FPagerAdapter(FragmentManager fm)
         {
@@ -102,18 +97,14 @@ public class ActivityHome extends ActionBarMenu {
 
             if ((position == 0))
             {
-                return new FragmentNotesList();
-            }
-            else if ((position == 1))
-            {
                 return new FragmentMap();
             }
-            else if ((position == 2))
+            else if ((position == 1))
             {
                 return new FragmentJourneysList();
 
             }
-            else if ((position == 3))
+            else if ((position == 2))
             {
                 return new FragmentContactsList();
             }

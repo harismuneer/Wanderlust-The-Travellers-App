@@ -34,5 +34,11 @@
         android:title="@string/action_step"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/Share"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="@string/action_share"
+        app:showAsAction="never" />
+
 
 </menu>

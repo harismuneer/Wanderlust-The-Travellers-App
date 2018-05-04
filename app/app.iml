@@ -93,7 +93,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
@@ -109,100 +108,110 @@
     <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-15.0.2" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-clearcut-15.0.1" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-storage-15.0.2" level="project" />
-    <orderEntry type="library" name="com.android.support:appcompat-v7-27.1.1" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-iid-15.1.0" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-applinks-4.32.0" level="project" />
-    <orderEntry type="library" name="com.android.support:design-27.1.1" level="project" />
+    <orderEntry type="library" name="com.twitter:twitter-text:1.14.3@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-places-15.0.0" level="project" />
-    <orderEntry type="library" name="de.hdodenhof:circleimageview-2.2.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-iid-interop-15.0.0" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-config-15.0.2" level="project" />
     <orderEntry type="library" name="com.android.support:transition-27.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="com.squareup:javawriter:2.1.1@jar" level="project" />
-    <orderEntry type="library" name="org.twitter4j:twitter4j-core:4.0.3@jar" level="project" />
-    <orderEntry type="library" name="com.parse.bolts:bolts-tasks:1.4.0@jar" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-appinvite-15.0.2" level="project" />
-    <orderEntry type="library" name="com.android.support:recyclerview-v7-27.1.1" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-measurement-connector-impl-15.0.0" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-measurement-connector-15.0.0" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-ads-base-15.0.1" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-storage-common-15.0.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="com.android.support.test:monitor-1.0.2" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-stats-15.0.1" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-dynamic-links-15.0.2" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-perf-15.1.0" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-solver:1.1.0@jar" level="project" />
-    <orderEntry type="library" name="com.facebook.android:facebook-android-sdk-4.32.0" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-basement-15.0.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="com.android.support.test:runner-1.0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-places-4.32.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-idling-resource-3.0.2" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-maps-15.0.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-core:1.3@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-flags-15.0.1" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:viewmodel-1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-integration:1.3@jar" level="project" />
-    <orderEntry type="library" name="com.crashlytics.sdk.android:crashlytics-2.9.2" level="project" />
-    <orderEntry type="library" name="com.google.zxing:core:3.3.0@jar" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-database-15.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="net.sf.kxml:kxml2:2.3.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-utils-27.1.1" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-auth-15.1.0" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-gass-15.0.1" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-location-15.0.0" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-messaging-15.0.2" level="project" />
+    <orderEntry type="library" name="com.squareup.picasso:picasso:2.5.2@jar" level="project" />
     <orderEntry type="library" name="com.crashlytics.sdk.android:answers-1.4.1" level="project" />
     <orderEntry type="library" name="com.android.support:support-annotations:27.1.1@jar" level="project" />
-    <orderEntry type="library" name="com.android.support:animated-vector-drawable-27.1.1" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-invites-15.0.1" level="project" />
+    <orderEntry type="library" name="com.twitter.sdk.android:tweet-ui-3.1.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-base-15.0.1" level="project" />
-    <orderEntry type="library" name="org.jetbrains:annotations-java5:15.0@jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="junit:junit:4.12@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-abt-15.0.1" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-auth-interop-15.0.2" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-places-placereport-15.0.1" level="project" />
-    <orderEntry type="library" name="android.arch.core:common:1.1.0@jar" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-appindexing-15.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-core-3.0.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="javax.inject:javax.inject:1@jar" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-common-4.32.0" level="project" />
     <orderEntry type="library" name="com.parse.bolts:bolts-applinks:1.4.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:customtabs-27.1.1" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.1.0" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-core-4.32.0" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-database-connection-15.0.1" level="project" />
+    <orderEntry type="library" name="com.squareup.retrofit2:converter-gson:2.1.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-vector-drawable-27.1.1" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-login-4.32.0" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:runtime-1.1.0" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:common:1.1.0@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-common-15.0.1" level="project" />
     <orderEntry type="library" name="com.android.support:cardview-v7-27.1.1" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-measurement-base-15.0.2" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-tasks-15.0.1" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-ads-15.0.1" level="project" />
     <orderEntry type="library" name="com.parse.bolts:bolts-android:1.4.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-ui-27.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-library:1.3@jar" level="project" />
-    <orderEntry type="library" name="com.crashlytics.sdk.android:crashlytics-core-2.6.2" level="project" />
-    <orderEntry type="library" name="com.android.support:support-compat-27.1.1" level="project" />
     <orderEntry type="library" name="io.fabric.sdk.android:fabric-1.4.2" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-ads-lite-15.0.1" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-database-collection-15.0.1" level="project" />
-    <orderEntry type="library" name="android.arch.lifecycle:livedata-core-1.1.0" level="project" />
-    <orderEntry type="library" name="com.crashlytics.sdk.android:beta-1.2.7" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-messenger-4.32.0" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-phenotype-15.0.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-ads-identifier-15.0.1" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-core-15.0.2" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-share-4.32.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-impl-15.0.2" level="project" />
+    <orderEntry type="library" name="com.twitter.sdk.android:tweet-composer-3.1.1" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-ads-15.0.0" level="project" />
+    <orderEntry type="library" name="com.squareup.okio:okio:1.9.0@jar" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-clearcut-15.0.1" level="project" />
+    <orderEntry type="library" name="com.android.support:appcompat-v7-27.1.1" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-applinks-4.32.0" level="project" />
+    <orderEntry type="library" name="com.android.support:design-27.1.1" level="project" />
+    <orderEntry type="library" name="de.hdodenhof:circleimageview-2.2.0" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-config-15.0.2" level="project" />
+    <orderEntry type="library" name="com.squareup.retrofit2:retrofit:2.1.0@jar" level="project" />
+    <orderEntry type="library" name="com.parse.bolts:bolts-tasks:1.4.0@jar" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-appinvite-15.0.2" level="project" />
+    <orderEntry type="library" name="com.android.support:recyclerview-v7-27.1.1" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-measurement-connector-impl-15.0.0" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-ads-base-15.0.1" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-measurement-connector-15.0.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="com.android.support.test:monitor-1.0.2" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-stats-15.0.1" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-dynamic-links-15.0.2" level="project" />
+    <orderEntry type="library" name="com.twitter.sdk.android:twitter-3.1.1" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-perf-15.1.0" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-basement-15.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="com.android.support.test:runner-1.0.2" level="project" />
+    <orderEntry type="library" name="com.facebook.android:facebook-android-sdk-4.32.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-idling-resource-3.0.2" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-maps-15.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-core:1.3@jar" level="project" />
+    <orderEntry type="library" name="com.squareup.okhttp3:okhttp:3.4.2@jar" level="project" />
+    <orderEntry type="library" name="com.crashlytics.sdk.android:crashlytics-2.9.2" level="project" />
+    <orderEntry type="library" name="com.google.zxing:core:3.3.0@jar" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-database-15.0.1" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-auth-15.1.0" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-gass-15.0.1" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-location-15.0.0" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-messaging-15.0.2" level="project" />
+    <orderEntry type="library" name="com.android.support:animated-vector-drawable-27.1.1" level="project" />
+    <orderEntry type="library" name="org.jetbrains:annotations-java5:15.0@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="junit:junit:4.12@jar" level="project" />
+    <orderEntry type="library" name="com.twitter.sdk.android:twitter-core-3.1.1" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-auth-interop-15.0.2" level="project" />
+    <orderEntry type="library" name="android.arch.core:common:1.1.0@jar" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-appindexing-15.0.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="javax.inject:javax.inject:1@jar" level="project" />
+    <orderEntry type="library" name="com.google.code.gson:gson:2.7@jar" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-database-connection-15.0.1" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-measurement-base-15.0.2" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-ads-15.0.1" level="project" />
+    <orderEntry type="library" name="com.android.support:support-compat-27.1.1" level="project" />
+    <orderEntry type="library" name="com.crashlytics.sdk.android:crashlytics-core-2.6.2" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-ads-lite-15.0.1" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-database-collection-15.0.1" level="project" />
+    <orderEntry type="library" name="android.arch.lifecycle:livedata-core-1.1.0" level="project" />
+    <orderEntry type="library" name="com.crashlytics.sdk.android:beta-1.2.7" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-phenotype-15.0.1" level="project" />
     <orderEntry type="library" name="com.android.support:support-fragment-27.1.1" level="project" />
     <orderEntry type="library" name="com.android.support:support-media-compat-27.1.1" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-ads-15.0.0" level="project" />
-    <orderEntry type="library" name="android.arch.core:runtime-1.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-v4-27.1.1" level="project" />
+    <orderEntry type="library" name="android.arch.core:runtime-1.1.0" level="project" />
   </component>
 </module>

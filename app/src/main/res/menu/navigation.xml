@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_notes"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_notes" />
-
-    <item
         android:id="@+id/navigation_journeysMap"
         android:icon="@android:drawable/ic_dialog_map"
         android:title="@string/title_journeysMap" />

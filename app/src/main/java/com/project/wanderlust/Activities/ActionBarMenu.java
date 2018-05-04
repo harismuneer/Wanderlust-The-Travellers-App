@@ -79,6 +79,16 @@ public class ActionBarMenu extends AppCompatActivity {
                 return true;
             }
 
+            case R.id.Share:
+            {
+                Intent intent = new Intent(this, ActivityShareOptions.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+
+                return true;
+            }
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }

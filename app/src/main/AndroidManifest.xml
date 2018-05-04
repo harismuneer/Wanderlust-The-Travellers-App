@@ -22,15 +22,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".Activities.AcitivitySplashScreen"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+
         <activity
             android:name=".Activities.ActivityRegisterPhoneNumber"
             android:windowSoftInputMode="stateAlwaysHidden">
@@ -62,8 +64,8 @@
         <activity android:name=".Activities.ActivityUserDetails" />
         <activity
             android:name=".Activities.ActivityHome"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_home" />
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.ActivityVoice"
             android:label="Voice Commands" />
@@ -73,10 +75,9 @@
         <activity
             android:name=".Sensors.StepCountActivity"
             android:label="Pedometer" />
-
-        <activity android:name=".Activities.ActivitySelectLocation"
-            android:label="Select Location"/>
-
+        <activity
+            android:name=".Activities.ActivitySelectLocation"
+            android:label="Select Location" />
 
         <!-- FCM -->
         <service
@@ -129,6 +130,33 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <!-- FOR FACEBOOK -->
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider2234549303439238"
+            android:exported="true" />
+
+        <activity
+            android:name=".Activities.ActivityFBLogin"
+            android:label="Login"></activity>
+        <activity
+            android:name=".Activities.ActivityFBPage"
+            android:label="Facebook" />
+        <activity
+            android:name=".Activities.ActivityShareOptions"
+            android:label="Share" />
+        <activity
+            android:name=".Activities.ActivityTLogin"
+            android:label="Login">
+        </activity>
+
+        <activity android:name=".Activities.ActivityTPage"
+            android:label="Twitter"></activity>
     </application>
 
 </manifest>

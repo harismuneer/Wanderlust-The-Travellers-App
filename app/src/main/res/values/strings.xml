@@ -257,11 +257,13 @@
 
 
     <string name="action_profile">Profile</string>
-    <string name="action_invitelink">Share</string>
+    <string name="action_invitelink">Invite</string>
     <string name="action_voice">Voice Commands</string>
     <string name="action_compass">Compass</string>
     <string name="action_step">Pedometer</string>
     <string name="title_activity_ads">ads</string>
+    <string name="action_share">Share</string>
+
 
     <string name="action_settings">Settings</string>
 
@@ -269,5 +271,14 @@
 
     <string name="banner_ad_unit_id">ca-app-pub-3963432354728475/7625052509</string>
     <string name="title_activity_maps">Map</string>
+
+
+    <string name="facebook_app_id">2234549303439238</string>
+    <string name="fb_login_protocol_scheme">fb2234549303439238</string>
+
+
+    <string name="Twitter_Consumer">yvz4e6P2CV6eJ5ibVThqlpsYl</string>
+    <string name="Twitter_Consumer_Secret">6Tj6f6N4zwiGzZmkiHCypzGSFAaGX4Kfin5IR5eIBUNpR2mvXW</string>
+
 
 </resources>
