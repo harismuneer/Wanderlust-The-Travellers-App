@@ -46,7 +46,7 @@ public class ActivityExtra extends ActionBarMenu {
                 ActivityRegisterPhoneNumber.mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
                         payload);
 
-                Toast.makeText(this, "Inivitation successfully sent!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.invitationSeccessfull, Toast.LENGTH_SHORT).show();
             }
             else {
                 // Sending failed or it was canceled, show failure message to the user
@@ -57,7 +57,7 @@ public class ActivityExtra extends ActionBarMenu {
                 ActivityRegisterPhoneNumber.mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
                         payload);
 
-                Toast.makeText(this, "Some error occurred while sending invitations..", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.error_send_invite, Toast.LENGTH_SHORT).show();
             }
         }
     }

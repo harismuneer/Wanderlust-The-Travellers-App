@@ -153,11 +153,11 @@ public class ActivityCreateJourney extends ActionBarMenu
         final String t = title.getText().toString();
         final String d = description.getText().toString();
         if(t.equals("")) {
-            Toast.makeText(this, "Please give your journey a title", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.GiveJourneyTitle, Toast.LENGTH_LONG).show();
             return;
         }
 
-        final ProgressDialog dialog = ProgressDialog.show(this, "Please wait", "Creating Jounrey...", true);
+        final ProgressDialog dialog = ProgressDialog.show(this, getString(R.string.wait), "Creating Jounrey...", true);
 
         Date date = new Date();
 
@@ -204,7 +204,7 @@ public class ActivityCreateJourney extends ActionBarMenu
                 .snippet(time + "\n" + d));
         j1.marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
 
-        Toast.makeText(this, "Journey Created Successfully!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.journeyCreated, Toast.LENGTH_LONG).show();
 
         onBackPressed();
     }
@@ -221,7 +221,7 @@ public class ActivityCreateJourney extends ActionBarMenu
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select Pictures"), GALLERY);
+        startActivityForResult(Intent.createChooser(intent,getString(R.string.selectPicture)), GALLERY);
     }
 
 

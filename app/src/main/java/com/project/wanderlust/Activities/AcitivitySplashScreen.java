@@ -29,7 +29,8 @@ public class AcitivitySplashScreen extends AppCompatActivity
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         // Hide the status bar.
@@ -64,7 +65,7 @@ public class AcitivitySplashScreen extends AppCompatActivity
                 Drawable splash =  getResources().getDrawable(getResources()
                         .getIdentifier(splashdisplay, "drawable", getPackageName()));
                 linear.setBackground(splash);
-                Toast.makeText(getApplicationContext(),"Splash Screen changed according to a new update :)",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.splashScreen,Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
         android:gravity="center"
-        android:text="Wanderlust"
+        android:text="@string/wanderlust"
         android:textColor="@android:color/white"
         android:textSize="70sp"
         android:textStyle="bold" />

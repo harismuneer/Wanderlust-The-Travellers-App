@@ -116,7 +116,7 @@ public class ActivitySetProfileData extends AppCompatActivity
 
             byte[] data = baos.toByteArray();
 
-            final ProgressDialog dialog = ProgressDialog.show(this, "Please wait", "Creating your profile...", true);
+            final ProgressDialog dialog = ProgressDialog.show(this, getString(R.string.please_wait), "Creating your profile...", true);
 
             //upload the byte array online on firebase storage
             UploadTask uploadTask = reference.putBytes(data);

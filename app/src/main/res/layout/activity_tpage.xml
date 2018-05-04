@@ -22,7 +22,7 @@ tools:context="com.project.wanderlust.Activities.ActivityTPage">
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="10dp"
-            android:text="Hello:"
+            android:text="@string/hello"
             android:textSize="20dp" />
 
         <TextView
@@ -51,7 +51,7 @@ tools:context="com.project.wanderlust.Activities.ActivityTPage">
             android:layout_marginStart="4dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/appOrange"
-            android:hint="Post New Tweet"
+            android:hint="@string/post_new_tweet"
             android:inputType="text|textMultiLine"
             android:maxLength="30"
             android:maxLines="1"
@@ -63,7 +63,7 @@ tools:context="com.project.wanderlust.Activities.ActivityTPage">
             android:layout_marginLeft="250dp"
             android:background="@color/appOrange"
             android:onClick="PostOnTwitter"
-            android:text="Post" />
+            android:text="@string/post" />
 
     </LinearLayout>
 

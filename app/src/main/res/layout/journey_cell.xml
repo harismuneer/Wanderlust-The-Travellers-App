@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:text="User"
+            android:text="@string/user"
             android:textSize="15sp" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:text="Journey Title"
+            android:text="@string/journey_title"
             android:textColor="@color/appOrange"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Faisal Town"
+            android:text="@string/Journey_Location"
             android:textSize="15sp" />
 
         <TextView
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="April 24"
+            android:text="@string/JourneyDate"
             android:textColor="@color/appOrange"
             android:textStyle="bold" />
 

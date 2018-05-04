@@ -23,7 +23,7 @@
                 android:layout_marginTop="125dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="Facebook Login"
+                android:text="@string/facebook_login"
                 android:textColor="@android:color/holo_red_light"
                 android:textSize="70sp"
                 android:textStyle="bold" />

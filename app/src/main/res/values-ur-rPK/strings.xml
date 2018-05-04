@@ -38,4 +38,67 @@
 
     <string name="waiting">خود کار طریقے سے ایس ایم ایس کو بھیجنے کا منتظر ہے</string>
     <string name="wrong_no">غلط نمبر؟</string>
+
+
+    <string name="title_activity_home">گھر</string>
+
+    <string name="title_notes">Notes</string>
+    <string name="title_journeys">سفر</string>
+    <string name="title_friends">دوست</string>
+    <string name="title_journeysMap">سفر کا نقشہ</string>
+
+
+    <string name="action_profile">پروفائل</string>
+    <string name="action_invitelink">مدعو کریں</string>
+    <string name="action_voice">آواز کے ذریعہ حکم</string>
+    <string name="action_compass">قطب نما</string>
+    <string name="action_step">اقدامات</string>
+    <string name="title_activity_ads">اشتہارات</string>
+    <string name="action_share">بانٹیں</string>
+
+
+    <string name="action_settings">ترتیبات</string>
+
+    <string name="hello_world">ہیلو دنیا!</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-3963432354728475/7625052509</string>
+    <string name="title_activity_maps">نقشہ</string>
+
+
+    <string name="facebook_app_id">2234549303439238</string>
+    <string name="fb_login_protocol_scheme">fb2234549303439238</string>
+
+
+    <string name="Twitter_Consumer">yvz4e6P2CV6eJ5ibVThqlpsYl</string>
+    <string name="Twitter_Consumer_Secret">6Tj6f6N4zwiGzZmkiHCypzGSFAaGX4Kfin5IR5eIBUNpR2mvXW</string>
+    <string name="send_invites">دعوت نامہ بھیج دیں</string>
+    <string name="facebook_login">فیس بک لاگ ان</string>
+    <string name="hello">خوش آمدید</string>
+    <string name="social_media">سوشل میڈیا</string>
+    <string name="facebook">فیس بک</string>
+    <string name="twitter">ٹویٹر</string>
+    <string name="images">تصاویر</string>
+    <string name="wanderlust">Wanderlust</string>
+    <string name="start_pedometer">اقدامات گننے شروع کریں</string>
+    <string name="stop_pedometer">اقدامات گننے بند کریں</string>
+    <string name="post_new_tweet">نئی ٹویٹ پوسٹ کریں</string>
+    <string name="post">پوسٹ</string>
+    <string name="voice_interactions">صوتی تعاملات</string>
+    <string name="start">شروع</string>
+    <string name="user">صارف</string>
+    <string name="journey_title">Journey Title</string>
+    <string name="Journey_Location">Faisal Town</string>
+    <string name="JourneyDate">April 24</string>
+
+    <string name="splashScreen">نیا اپ ڈیٹ کے مطابق سپلیش سکرین تبدیل کر دیا گیا :)</string>
+    <string name="GiveJourneyTitle">برائے مہربانی اپنا سفر ایک عنوان دیں</string>
+    <string name="send">بھیجیں</string>
+    <string name="wait">برائے مہربانی انتظار کریں</string>
+    <string name="journeyCreated">سفر کامیابی سے بنا دیا گیا ہے!</string>
+    <string name="selectPicture">تصاویر منتخب کریں</string>
+    <string name="invitationSeccessfull">مدعو کامیابی سے بھیجی گئی!</string>
+    <string name="error_send_invite">مدعو بھیجنے کے دوران کچھ غلطی ہوئی.</string>
+    <string name="please_wait">برائے مہربانی انتظار کریں</string>
+
+
 </resources>

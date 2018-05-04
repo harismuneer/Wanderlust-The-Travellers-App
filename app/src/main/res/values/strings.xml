@@ -279,6 +279,34 @@
 
     <string name="Twitter_Consumer">yvz4e6P2CV6eJ5ibVThqlpsYl</string>
     <string name="Twitter_Consumer_Secret">6Tj6f6N4zwiGzZmkiHCypzGSFAaGX4Kfin5IR5eIBUNpR2mvXW</string>
+    <string name="send_invites">Send Invites</string>
+    <string name="facebook_login">Facebook Login</string>
+    <string name="hello">Hello:</string>
+    <string name="social_media">Social Media</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="images">Images</string>
+    <string name="wanderlust">Wanderlust</string>
+    <string name="start_pedometer">Start Pedometer</string>
+    <string name="stop_pedometer">Stop Pedometer</string>
+    <string name="post_new_tweet">Post New Tweet</string>
+    <string name="post">Post</string>
+    <string name="voice_interactions">Voice Interactions</string>
+    <string name="start">Start</string>
+    <string name="user">User</string>
+    <string name="journey_title">Journey Title</string>
+    <string name="Journey_Location">Faisal Town</string>
+    <string name="JourneyDate">April 24</string>
+
+    <string name="splashScreen">Splash screen changed according to your preference :)</string>
+    <string name="GiveJourneyTitle">Please give title to your journey</string>
+    <string name="send">Send</string>
+    <string name="wait">Please wait</string>
+    <string name="journeyCreated">Journey created successfully!</string>
+    <string name="selectPicture">Select Pictures</string>
+    <string name="invitationSeccessfull">Invite sent successfully</string>
+    <string name="error_send_invite">there was some error while sending invite</string>
+    <string name="please_wait">Please wait</string>
 
 
 </resources>
