@@ -34,11 +34,10 @@ public class ActivityFBLogin extends ActionBarMenu {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_fb_login);
+
 
         FacebookSdk.sdkInitialize(this);
-
-
-        setContentView(R.layout.activity_fb_login);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

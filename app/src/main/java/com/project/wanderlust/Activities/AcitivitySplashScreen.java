@@ -21,7 +21,7 @@ import com.project.wanderlust.R;
 public class AcitivitySplashScreen extends AppCompatActivity
 {
 
-    private int SPLASH_TIME_OUT = 5000;
+    private int SPLASH_TIME_OUT = 8000;
     public  LinearLayout linear;
     public  FirebaseRemoteConfig config;
     public  long cacheExpiration;
