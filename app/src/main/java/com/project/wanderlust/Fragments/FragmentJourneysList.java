@@ -96,6 +96,8 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
 
                     Intent intent = new Intent(getContext(), ActivityShowJourney.class);
                     intent.putExtra("timestamp", new SimpleDateFormat(ActivityCreateJourney.DATE_FORMAT).format(j.date));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
                     startActivity(intent);
                 }
 
@@ -120,6 +122,7 @@ public class FragmentJourneysList extends Fragment implements RecyclerView.OnIte
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), ActivitySelectLocation.class);
                 i.putExtra("callActivity", "journey");
+                i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(i);
             }
         });

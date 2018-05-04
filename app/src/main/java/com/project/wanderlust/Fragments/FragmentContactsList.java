@@ -92,6 +92,7 @@ public class FragmentContactsList extends Fragment implements RecyclerView.OnIte
 
                     Intent intent = new Intent(c, ActivityUserDetails.class);
                     intent.putExtra("phoneNumber", j.getPhone());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
                 }
 

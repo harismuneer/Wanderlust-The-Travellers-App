@@ -48,79 +48,75 @@ public class ActivityFBLogin extends ActionBarMenu {
         //Already Logged In
         if (token != null)
         {
-            Intent main = new Intent(ActivityFBLogin.this,ActivityFBPage.class);
-
-            main.putExtra("name",firstName);
-            main.putExtra("surname",lastName);
-
-            if (profilePicture != null) {
-                main.putExtra("imageUrl", profilePicture.toString());
-            }
-
-            startActivity(main);
-            finish();
+            getData();
         }
+        else {
+            callbackManager = CallbackManager.Factory.create();
+
+            loginButton = (LoginButton) findViewById(R.id.login_button);
 
 
-        callbackManager = CallbackManager.Factory.create();
+            FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    getData();
+                }
 
-        loginButton = (LoginButton) findViewById(R.id.login_button);
+                @Override
+                public void onCancel() {
+                }
+
+                @Override
+                public void onError(FacebookException e) {
+                    e.printStackTrace();
+                }
+            };
 
 
-        FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>()
-        {
+            loginButton.setReadPermissions("email", "user_birthday", "user_posts");
+            loginButton.registerCallback(callbackManager, callback);
+        }
+    }
+
+
+    public void getData()
+    {
+        GraphRequest request = GraphRequest.newMeRequest(com.facebook.AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
+            public void onCompleted(JSONObject object, GraphResponse response) {
 
-                        try
-                        {
-                            userId = object.getString("id");
-                            profilePicture = new URL("https://graph.facebook.com/" + userId + "/picture?width=500&height=500");
-                            if(object.has("first_name"))
-                                firstName = object.getString("first_name");
-                            if(object.has("last_name"))
-                                lastName = object.getString("last_name");
+                try {
+                    userId = object.getString("id");
+                    profilePicture = new URL("https://graph.facebook.com/" + userId + "/picture?width=500&height=500");
+                    if (object.has("first_name"))
+                        firstName = object.getString("first_name");
+                    if (object.has("last_name"))
+                        lastName = object.getString("last_name");
 
-                            Intent main = new Intent(ActivityFBLogin.this,ActivityFBPage.class);
+                    Intent main = new Intent(ActivityFBLogin.this, ActivityFBPage.class);
 
-                            main.putExtra("name",firstName);
-                            main.putExtra("surname",lastName);
-                            main.putExtra("imageUrl",profilePicture.toString());
+                    main.putExtra("name", firstName);
+                    main.putExtra("surname", lastName);
+                    main.putExtra("imageUrl", profilePicture.toString());
 
-                            startActivity(main);
-                            finish();
+                    main.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+                    startActivity(main);
+                    finish();
 
-                //Here we put the requested fields to be returned from the JSONObject
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id, first_name, last_name");
-                request.setParameters(parameters);
-                request.executeAsync();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
             }
+        });
 
-            @Override
-            public void onCancel() {
-            }
-
-            @Override
-            public void onError(FacebookException e) {
-                e.printStackTrace();
-            }
-        };
-
-
-        loginButton.setReadPermissions("email", "user_birthday", "user_posts");
-        loginButton.registerCallback(callbackManager, callback);
+        //Here we put the requested fields to be returned from the JSONObject
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id, first_name, last_name");
+        request.setParameters(parameters);
+        request.executeAsync();
     }
 
 

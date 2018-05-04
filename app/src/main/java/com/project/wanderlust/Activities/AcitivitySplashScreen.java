@@ -21,7 +21,7 @@ import com.project.wanderlust.R;
 public class AcitivitySplashScreen extends AppCompatActivity
 {
 
-    private int SPLASH_TIME_OUT = 8000;
+    private int SPLASH_TIME_OUT = 5000;
     public  LinearLayout linear;
     public  FirebaseRemoteConfig config;
     public  long cacheExpiration;
@@ -80,6 +80,7 @@ public class AcitivitySplashScreen extends AppCompatActivity
             public void run() {
                 // Start your app main activity
                 Intent i = new Intent(AcitivitySplashScreen.this, ActivityRegisterPhoneNumber.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(i);
                 finish();
             }

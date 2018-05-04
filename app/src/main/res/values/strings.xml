@@ -276,6 +276,8 @@
     <string name="facebook_app_id">2234549303439238</string>
     <string name="fb_login_protocol_scheme">fb2234549303439238</string>
 
+    <string name="action_logout1">Log Out</string>
+
 
     <string name="Twitter_Consumer">yvz4e6P2CV6eJ5ibVThqlpsYl</string>
     <string name="Twitter_Consumer_Secret">6Tj6f6N4zwiGzZmkiHCypzGSFAaGX4Kfin5IR5eIBUNpR2mvXW</string>

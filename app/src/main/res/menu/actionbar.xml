@@ -39,6 +39,4 @@
         android:icon="@android:drawable/ic_menu_share"
         android:title="@string/action_share"
         app:showAsAction="never" />
-
-
 </menu>
