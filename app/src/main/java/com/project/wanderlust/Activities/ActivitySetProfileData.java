@@ -165,9 +165,7 @@ public class ActivitySetProfileData extends AppCompatActivity
                     mDatabase.child("Users").child(phone).setValue(map);
 
                     //Name is saved successfully in Users.
-                    Intent intent = new Intent(ActivitySetProfileData.this, ActivityHome.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(intent);
+                    startActivity(new Intent(ActivitySetProfileData.this, ActivityHome.class));
                     finish();
                 }
             });

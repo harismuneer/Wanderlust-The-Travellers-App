@@ -81,16 +81,12 @@ public class ActivityVerifyPhoneNumber extends AppCompatActivity
                                 if (!file.exists()) {
                                     Intent intent = new Intent(ActivityVerifyPhoneNumber.this, ActivitySetProfileData.class);
                                     intent.putExtra("phone", string);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
                                     startActivity(intent);
                                     finish();
                                 }
                                 else
                                 {
-                                    Intent p = new Intent(getApplicationContext(), ActivityHome.class);
-                                    p.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                                    startActivity(p);
+                                    startActivity(new Intent(getApplicationContext(), ActivityHome.class));
                                     finish();
                                 }
                             }
@@ -122,8 +118,6 @@ public class ActivityVerifyPhoneNumber extends AppCompatActivity
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         Intent intent = new Intent(ActivityVerifyPhoneNumber.this, ActivitySetProfileData.class);
                                         intent.putExtra("phone", string);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
                                         startActivity(intent);
                                         finish();
                                     }

@@ -51,8 +51,6 @@ public class ActivityTPage extends ActionBarMenu {
                     .text(p)
                     .hashtags("#wanderlust_best_app")
                     .createIntent();
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
             startActivity(intent);
         }
 

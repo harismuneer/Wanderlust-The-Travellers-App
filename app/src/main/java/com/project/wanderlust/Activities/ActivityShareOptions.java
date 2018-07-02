@@ -22,8 +22,6 @@ public class ActivityShareOptions extends ActionBarMenu {
     public void facebook(View view)
     {
         Intent main = new Intent(this,ActivityFBLogin.class);
-        main.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
         startActivity(main);
     }
 
@@ -31,8 +29,6 @@ public class ActivityShareOptions extends ActionBarMenu {
     public void twitter(View view)
     {
         Intent main = new Intent(this,ActivityTLogin.class);
-        main.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
         startActivity(main);
     }
 

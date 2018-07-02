@@ -58,8 +58,6 @@ public class ActivitySelectLocation extends AppCompatActivity {
                     i.putExtra("lat" ,lat);
                     i.putExtra("address" ,address);
 
-                    i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
                     startActivity(i);
                     finish();
                 }

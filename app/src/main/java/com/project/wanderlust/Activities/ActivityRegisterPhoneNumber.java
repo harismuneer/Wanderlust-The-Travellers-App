@@ -106,11 +106,7 @@ public class ActivityRegisterPhoneNumber extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null)
         {
-            Intent intent = new Intent(this, ActivityHome.class);
-
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
-            startActivity(intent);
+            startActivity(new Intent(this, ActivityHome.class));
             finish();
         }
         else
@@ -198,8 +194,6 @@ public class ActivityRegisterPhoneNumber extends AppCompatActivity {
 
         Intent intent = new Intent(this, ActivityVerifyPhoneNumber.class);
         intent.putExtra("phone", editText1.getText().toString() + editText2.getText().toString());
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
         startActivity(intent);
     }
 }

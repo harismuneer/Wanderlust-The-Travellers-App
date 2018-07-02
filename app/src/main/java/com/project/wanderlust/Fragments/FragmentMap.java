@@ -142,7 +142,6 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback
 
                 Intent intent = new Intent(getContext(), ActivityShowJourney.class);
                 intent.putExtra("timestamp", timestamp);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
         });

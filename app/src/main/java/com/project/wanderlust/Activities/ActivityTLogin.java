@@ -52,8 +52,6 @@ public class ActivityTLogin extends ActionBarMenu {
         if (getTwitterSession() != null)
         {
             Intent main = new Intent(this,ActivityTPage.class);
-            main.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
             startActivity(main);
         }
         else {
@@ -64,8 +62,6 @@ public class ActivityTLogin extends ActionBarMenu {
                 public void success(Result<TwitterSession> result) {
                     session = result.data;
                     Intent main = new Intent(ActivityTLogin.this, ActivityTPage.class);
-                    main.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
                     startActivity(main);
 
                 }
