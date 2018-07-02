@@ -1,18 +1,17 @@
 package com.project.wanderlust.Fragments;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.v4.app.Fragment;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.provider.ContactsContract;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.ContactsContract;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,12 +35,10 @@ import com.google.firebase.storage.StorageReference;
 import com.project.wanderlust.Activities.ActivityUserDetails;
 import com.project.wanderlust.Adapters.AdapterContactsList;
 import com.project.wanderlust.DataClasses.Contact;
-import com.project.wanderlust.R;
 import com.project.wanderlust.Others.SharedFunctions;
+import com.project.wanderlust.R;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;

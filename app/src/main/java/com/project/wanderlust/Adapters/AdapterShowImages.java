@@ -1,7 +1,6 @@
 package com.project.wanderlust.Adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,7 +15,6 @@ import com.crashlytics.android.Crashlytics;
 import com.project.wanderlust.R;
 
 import java.util.ArrayList;
-import java.util.Timer;
 
 
 public class AdapterShowImages extends ArrayAdapter<Uri>

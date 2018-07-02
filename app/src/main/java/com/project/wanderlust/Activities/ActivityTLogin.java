@@ -1,7 +1,6 @@
 package com.project.wanderlust.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -9,9 +8,9 @@ import com.project.wanderlust.R;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.DefaultLogger;
 import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterConfig;
-import com.twitter.sdk.android.core.Twitter;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
@@ -27,8 +26,8 @@ public class ActivityTLogin extends ActionBarMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String consumerKey = "yHLRJX0scOPs3KzEjpG24ncwV";
-        String consumerSecret = "TGurwmekln1LoUU1Bcza7P3cridGYCdSF0aTQIzVNLlANt6ACU";
+        String consumerKey = "pgVuwsSE77MbeAAdVvRU2MqDj";
+        String consumerSecret = "wGZHmwZ7wrI5Io47k4scOLyEUDBjsIFiqU8DCOXTwOUeK0oPY0";
 
 
         TwitterConfig config = new TwitterConfig.Builder(this)

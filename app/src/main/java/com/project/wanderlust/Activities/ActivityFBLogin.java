@@ -1,7 +1,6 @@
 package com.project.wanderlust.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.facebook.CallbackManager;

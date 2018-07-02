@@ -1,22 +1,19 @@
 package com.project.wanderlust.Activities;
 
-import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,8 +23,6 @@ import com.project.wanderlust.Adapters.AdapterShowImages;
 import com.project.wanderlust.R;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

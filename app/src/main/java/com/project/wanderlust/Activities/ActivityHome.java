@@ -1,22 +1,17 @@
 package com.project.wanderlust.Activities;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.project.wanderlust.Fragments.FragmentContactsList;
 import com.project.wanderlust.Fragments.FragmentJourneysList;
 import com.project.wanderlust.Fragments.FragmentMap;
-import com.project.wanderlust.Fragments.FragmentNotesList;
 import com.project.wanderlust.R;
 
 
