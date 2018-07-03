@@ -65,3 +65,6 @@ An apk file named "Wanderlust.apk" is provided which can be installed on an Andr
 
 In order to have a look at the code files and understand the working, simply download this repository and open Android Studio and browse to the downloaded project and open it. It will load the project files and the code will be ready to run. Before running the app, use your Google Account to register this Application on Firebase Console, with any name you want. Then using that Google Account, login to Android Studio. Then you can run the project.
 
+
+## Contact
+You can get in touch with me on my Linkedin Profile: [Haris Muneer](https://www.linkedin.com/in/harismuneer/)
