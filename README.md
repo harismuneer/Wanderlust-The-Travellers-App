@@ -16,6 +16,17 @@ Wanderlust is an **android app** that allows its users to keep track of their jo
 * Google Admob APIs
 * Firebase Realtime Database
 
+
+## Screenshots of Interfaces and their Description
+
+<p align="middle">
+  <img src="../master/images/s1.png"/>
+ </p>
+ 
+ <p align="middle">
+  <img src="../master/images/s2.png"/>
+ </p>
+
 ## Functionalities
 
 Wanderlust uses **Firebase Phone Number Authentication** which verifies a user’s phone number by sending a code to it. The user is then authenticated to use the app.
@@ -50,13 +61,3 @@ Moreover the **modern UI/UX guidelines for Android App Design** have been follow
 The attached presentation ‘**Wanderlust-Rules**’ explains how our app utilized these HCI rules in our interfaces.
 
 -------------------------------------------------------------------------------------------------------- 
-
-## Screenshots of Interfaces and their Description
-
-<p align="middle">
-  <img src="../master/images/s1.png"/>
- </p>
- 
- <p align="middle">
-  <img src="../master/images/s2.png"/>
- </p>
