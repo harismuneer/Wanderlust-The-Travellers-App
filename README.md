@@ -6,7 +6,7 @@ Wanderlust is an **android app** that allows its users to keep track of their jo
 ## Tools and APIs Used
 * Android Studio is used to develop the whole android application in Java
 * Google Maps API
-* Facebook and Twitter APIs (for fetching and uploading data on these platforms)
+* Facebook and Twitter SDKs (for fetching and uploading data on these platforms)
 * Google Places API
 * Firebase Authentication
 * Cloud Messaging using Google Firebase
