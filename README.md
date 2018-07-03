@@ -67,4 +67,4 @@ In order to have a look at the code files and understand the working, simply dow
 
 
 ## Contact
-You can get in touch with me on my Linkedin Profile: [Haris Muneer](https://www.linkedin.com/in/harismuneer/)
+You can get in touch with me on my LinkedIn Profile: [Haris Muneer](https://www.linkedin.com/in/harismuneer/)
