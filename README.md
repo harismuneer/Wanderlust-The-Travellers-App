@@ -1,7 +1,6 @@
 # Wanderlust - The Traveller's App
 
 ## Project Description
-----------------------------------------------------------------------------------------------------------------------------------------
 Wanderlust is an **android app** that allows its users to keep track of their journey experiences by allowing them to save their journeys in the form of a trip diary and have all their travel experiences saved at one place. Its more of a **Check-in** application. In order to spice things up, we gave this app a **social platform** feel by allowing the user to add friends and share his profile containing journeys count and friends count with each other. 
 
 ## Tools and APIs Used
@@ -60,4 +59,3 @@ Moreover the **modern UI/UX guidelines for Android App Design** have been follow
 
 The attached presentation ‘**Wanderlust-Rules**’ explains how our app utilized these HCI rules in our interfaces.
 
--------------------------------------------------------------------------------------------------------- 
