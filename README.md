@@ -1,4 +1,12 @@
-# Wanderlust - The Traveller's App
+# 👟 Wanderlust - The Traveller's App
+
+
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](#)
+[![GitHub Forks](https://img.shields.io/github/forks/harismuneer/Wanderlust-The-Travellers-App.svg?style=social&label=Fork&maxAge=2592000)](https://www.github.com/harismuneer/Wanderlust-The-Travellers-App/fork)
+[![Build Status](https://semaphoreapp.com/api/v1/projects/d4cca506-99be-44d2-b19e-176f36ec8cf1/128505/badge.svg)](#)
+[![GitHub Issues](https://img.shields.io/github/issues/harismuneer/Wanderlust-The-Travellers-App.svg?style=flat&label=Issues&maxAge=2592000)](https://www.github.com/harismuneer/Wanderlust-The-Travellers-App/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat&label=Contributions&colorA=red&colorB=black	)](#)
+
 
 ## Project Description
 Wanderlust is an **android app** that allows its users to keep track of their journey experiences by allowing them to save their journeys in the form of a trip diary and have all their travel experiences saved at one place. Its more of a **Check-in** application. In order to spice things up, we gave this app a **social platform** feel by allowing the user to add friends and share his profile containing journeys count and friends count with each other. 
@@ -65,13 +73,27 @@ An apk file named "Wanderlust.apk" is provided which can be installed on an Andr
 
 In order to have a look at the code files and understand the working, simply download this repository and open Android Studio and browse to the downloaded project and open it. It will load the project files and the code will be ready to run. Before running the app, use your Google Account to register this Application on Firebase Console, with any name you want. Then using that Google Account, login to Android Studio. Then you can run the project.
 
+---
 
-## Contact
-You can get in touch with me on my LinkedIn Profile: [Haris Muneer](https://www.linkedin.com/in/harismuneer/)
+## Author
+You can get in touch with me on my LinkedIn Profile: [![LinkedIn Link](https://img.shields.io/badge/Connect-harismuneer-blue.svg?logo=linkedin&longCache=true&style=social&label=Connect
+)](https://www.linkedin.com/in/harismuneer)
+
+You can also follow my GitHub Profile to stay updated about my latest projects: [![GitHub Follow](https://img.shields.io/badge/Connect-harismuneer-blue.svg?logo=Github&longCache=true&style=social&label=Follow)](https://github.com/harismuneer)
+
+If you liked the repo then kindly support it by giving it a star ⭐!
+
+## Contributions Welcome
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](#)
+
+If you find any bug in the code or have any improvements in mind then feel free to generate a pull request.
 
 ## Issues
+[![GitHub Issues](https://img.shields.io/github/issues/harismuneer/Wanderlust-The-Travellers-App.svg?style=flat&label=Issues&maxAge=2592000)](https://www.github.com/harismuneer/Wanderlust-The-Travellers-App/issues)
+
 If you face any issue, you can create a new issue in the Issues Tab and I will be glad to help you out.
 
 ## License
-[MIT](../master/LICENSE)
-Copyright (c) 2018-present, harismuneer
+[![MIT](https://img.shields.io/cocoapods/l/AFNetworking.svg?style=style&label=License&maxAge=2592000)](../master/LICENSE)
+
+Copyright (c) 2018-present, harismuneer, HassaanElahi, FarhanShoukat                              
