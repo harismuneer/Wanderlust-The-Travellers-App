@@ -65,7 +65,7 @@ Moreover the **modern UI/UX guidelines for Android App Design** have been follow
 * Audio Feedback using Text to Speech
 * Enhanced Accessibility Using Google Maps
 
-The attached presentation ‘**Wanderlust-Rules**’ explains how our app utilized these HCI rules in our interfaces.
+The attached presentation ‘![Wanderlust-Rules](../master/Wanderlust-Rules.pptx)’ explains how our app utilized these HCI rules in our interfaces.
 
 ## How to Run
 
