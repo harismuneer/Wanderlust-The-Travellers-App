@@ -71,7 +71,7 @@ The attached presentation ‘**Wanderlust-Rules**’ explains how our app utiliz
 
 An apk file named "Wanderlust.apk" is provided which can be installed on an Android Phone. 
 
-In order to have a look at the code files and understand the working, simply download this repository and open Android Studio and browse to the downloaded project and open it. It will load the project files and the code will be ready to run. Before running the app, use your Google Account to register this Application on Firebase Console, with any name you want. Then using that Google Account, login to Android Studio. Then you can run the project.
+In order to have a look at the code files and understand the working, simply download this repository and open Android Studio and browse to the downloaded project and open it. It will load the project files and the code will be ready to run. Before running the app, use your Google Account to register this Application on Firebase Console, with any name you want. Then using that Google Account, login to Android Studio. Then you can run the project. If you face any issues with the Firebase Database, you can ping me up.
 
 ---
 
